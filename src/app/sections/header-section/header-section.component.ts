@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-header-section',
@@ -6,5 +6,17 @@ import { Component } from '@angular/core';
   templateUrl: './header-section.component.html',
 })
 export class HeaderSectionComponent {
+
+
+  //Menu items
+
+  menuItems: string[] = [
+    "Nosotros",
+    "Equipo",
+    "Proyectos",
+    "Noticias"
+  ]
+
+
 
 }
