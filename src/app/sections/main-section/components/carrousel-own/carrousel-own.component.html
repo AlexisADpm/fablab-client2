@@ -1,12 +1,14 @@
-<div class="overflow-hidden w-[90%] mx-[5%] mt-10">
-  <div class="flex carouselMovement" #carrousel>
+<div class="overflow-hidden w-[90%] mx-[5%] mt-10 h-[200px] md:h-[500px] relative">
+  <div class="flex carouselMovement h-[200px] md:h-[500px]" #carrousel>
     <div class="bg-amber-300 min-w-full w-full" #slide>1</div>
     <div class="bg-blue-500 min-w-full w-full" #slide>2</div>
     <div class="bg-rose-500 min-w-full w-full" #slide>3</div>
     <!-- Más elementos -->
   </div>
+  <div class="absolute z-30 bottom-0 w-full flex justify-center gap-2 mb-2">
+    <button class="btn btn-primary" (click)="prev()">Prev</button>
+    <button class="btn btn-primary" (click)="next()">Next</button>
+  </div>
 </div>
-<button class="btn btn-primary" (click)="next()">Next</button>
-<button class="btn btn-primary" (click)="prev()">Prev</button>
 
 
