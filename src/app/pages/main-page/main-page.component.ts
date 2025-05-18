@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { HeaderSectionComponent } from '../../sections/header-section/header-section.component';
 import { FooterSectionComponent } from '../../sections/footer-section/footer-section.component';
-import { CarrouselComponent } from '../../sections/main-section/components/carrousel/carrousel.component';
 import { MainSectionComponent } from '../../sections/main-section/main-section.component';
 
 @Component({
