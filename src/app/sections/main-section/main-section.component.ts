@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { CarrouselComponent } from './components/carrousel/carrousel.component';
 import { ProyectsComponent } from './components/proyects/proyects.component';
@@ -8,3 +9,4 @@ import { ProyectsComponent } from './components/proyects/proyects.component';
   templateUrl: './main-section.component.html',
 })
 export class MainSectionComponent {}
+

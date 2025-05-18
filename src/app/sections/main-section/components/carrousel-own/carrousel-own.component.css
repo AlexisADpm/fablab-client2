@@ -1,0 +1,3 @@
+.carouselMovement {
+  transition: transform 0.5s ease-in-out; /* Suaviza el movimiento */
+}
