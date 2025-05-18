@@ -3,11 +3,20 @@
     <div class="bg-amber-300 min-w-full w-full" #slide>1</div>
     <div class="bg-blue-500 min-w-full w-full" #slide>2</div>
     <div class="bg-rose-500 min-w-full w-full" #slide>3</div>
-    <!-- Más elementos -->
+
   </div>
-  <div class="absolute z-30 bottom-0 w-full flex justify-center gap-2 mb-2">
-    <button class="btn btn-primary" (click)="prev()">Prev</button>
-    <button class="btn btn-primary" (click)="next()">Next</button>
+  <div class="absolute z-30 bottom-0 w-full h-full flex justify-center">
+    <div class="flex justify-between w-full h-full mx-4 items-center">
+      <button class="btn btn-primary" (click)="prev()">Prev</button>
+      <div class="relative gap-2 self-end">
+        @for (buttons of objImages; track $index; let idx = $index) {
+          <button (click)="goToSlide(idx)">
+            <i class="fa-solid fa-circle text-gray-100/70 text-xs mx-1 cursor-pointer mb-5" #navigationButtons></i>
+          </button>
+        }
+      </div>
+      <button class="btn btn-primary" (click)="next()">Next</button>
+    </div>
   </div>
 </div>
 

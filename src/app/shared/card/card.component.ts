@@ -1,50 +1,13 @@
-import { JsonPipe } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { Component, inject, signal } from '@angular/core';
-import { rxResource } from '@angular/core/rxjs-interop';
-
-
-interface person{
-  userId: number,
-  id: number,
-  title:string,
-  body:string
-}
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card',
-  imports: [JsonPipe],
+  standalone: true,
   templateUrl: './card.component.html',
 })
 export class CardComponent {
-
-  //test peticion http
-
-
-
-  signalPosts = signal<string>("posts")
-
-
-  //Recurso asincrono reacti
-  // ... (definición de userId, userSearch$, requestParams, getRequest)
-  http = inject(HttpClient);
-
-  // Ejemplo con Signal
-  user = rxResource(
-    {request: ()=>({query: this.signalPosts()}),
-  loader: ({request})=>{
-    return this.http.get<person[]>(`https://jsonplaceholder.typicode.com/${request.query}`);
-  }}
-  )
-
-  // Ejemplo con Observable
-
-  // Ejemplo con Request Factory
-
-  // ...
+  @Input() title: string = '';
+  @Input() description: string = '';
+  @Input() imgUrl: string = '';
 }
-
-
-
-
-
+//Ponemos los inputs, todos como string, de momento, y le asignamos un valor vasio para iniciarlo asi por defecto

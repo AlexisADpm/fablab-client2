@@ -1,17 +1,12 @@
-import { Component, ElementRef, QueryList, signal, ViewChild, ViewChildren, viewChildren } from '@angular/core';
-import { CarrouselOwnComponent } from "./components/carrousel-own/carrousel-own.component";
+
+import { Component } from '@angular/core';
+import { CarrouselComponent } from './components/carrousel/carrousel.component';
+import { ProyectsComponent } from './components/proyects/proyects.component';
 
 @Component({
   selector: 'app-main-section',
-  imports: [ CarrouselOwnComponent],
+  imports: [CarrouselComponent, ProyectsComponent],
   templateUrl: './main-section.component.html',
 })
-export class MainSectionComponent {
+export class MainSectionComponent {}
 
-
-
-
-
-
-
-}

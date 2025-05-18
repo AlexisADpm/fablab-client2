@@ -1,4 +1,13 @@
 {
     "IDX.aI.enableInlineCompletion": true,
-    "IDX.aI.enableCodebaseIndexing": true
+    "IDX.aI.enableCodebaseIndexing": true,
+    "angular-schematics.schematicsDefaultOptions": {
+        "angular-component": {
+            "skipChangeDetectionOnPush": true
+        },
+        "angular-*": {
+            "externalTemplate": true,
+            "skipStyle": true
+        }
+    }
 }
