@@ -1,0 +1,8 @@
+<section class="grid grid-cols-3 gap-6 p-6 bg-neutral">
+  <app-card
+    *ngFor="let proyecto of dbLocalProyectos"
+    [title]="proyecto.title"
+    [description]="proyecto.description"
+    [imgUrl]="proyecto.imgUrl"
+  ></app-card>
+</section>
