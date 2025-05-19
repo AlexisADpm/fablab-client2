@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ProyectsComponent } from './components/proyects/proyects.component';
 import { CarrouselOwnComponent } from './components/carrousel-own/carrousel-own.component';
+import { ProyectsComponent } from './components/projects/projects.component';
 
 @Component({
   selector: 'app-main-section',
