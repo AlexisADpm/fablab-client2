@@ -41,14 +41,17 @@ export class CarrouselOwnComponent {
 
 
   //Change slides
-  next(){
-    this.activePositionIndex.update(pos =>(pos<this.slides.length-1)? pos + 1 : 0);
+  moves(pos:number): void{
+    //move +
+    if(pos){
+      this.activePositionIndex.update(pos =>(pos<this.slides.length-1)? pos + 1 : 0);
+    }
+    //move -
+    else{
+      this.activePositionIndex.update(pos =>(pos>0)? pos - 1 : this.slides.length-1);
+    }
     this.renderer.setStyle(this.carrousel.nativeElement,'transform',`translateX(${-this.containerWidth()*this.activePositionIndex()}px)`);
-  }
-
-  prev(){
-    this.activePositionIndex.update(pos =>(pos>0)? pos - 1 : this.slides.length-1);
-    this.renderer.setStyle(this.carrousel.nativeElement,'transform',`translateX(${-this.containerWidth()*this.activePositionIndex()}px)`);
+    this.changeDotColor(this.activePositionIndex());
   }
 
   //Ir al slide
@@ -58,12 +61,11 @@ export class CarrouselOwnComponent {
     this.changeDotColor(slidePos);
   }
 
-  changeDotColor(pos:number){
+  changeDotColor(pos:number): void{
     this.navButttons.forEach((el)=>{
       this.renderer.removeClass(el.nativeElement,"text-black/70");
       this.renderer.addClass(el.nativeElement,"text-gray-100/70");
     })
-
     this.renderer.removeClass(this.navButttons.get(pos)?.nativeElement,"text-gray-100/70");
     this.renderer.addClass(this.navButttons.get(pos)?.nativeElement,"text-black/70");
   }
