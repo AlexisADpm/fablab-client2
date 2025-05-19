@@ -2,12 +2,12 @@
   <figure>
     <img
       class="transition-transform duration-300 hover:scale-110"
-      [src]="imgUrl"
-      [alt]="'Imagen de ' + title"
+      [src]="imgUrl()"
+      [alt]="'Imagen de ' + title()"
     />
   </figure>
   <div class="card-body">
-    <h2 class="card-title">{{ title }}</h2>
-    <p>{{ description }}</p>
+    <h2 class="card-title">{{ title() }}</h2>
+    <p>{{ description() }}</p>
   </div>
 </div>
