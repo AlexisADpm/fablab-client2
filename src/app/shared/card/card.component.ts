@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -6,8 +6,8 @@ import { Component, Input } from '@angular/core';
   templateUrl: './card.component.html',
 })
 export class CardComponent {
-  @Input() title: string = '';
-  @Input() description: string = '';
-  @Input() imgUrl: string = '';
+  title = input<string>('');
+  description = input<string>('');
+  imgUrl = input<string>('');
 }
 //Ponemos los inputs, todos como string, de momento, y le asignamos un valor vasio para iniciarlo asi por defecto

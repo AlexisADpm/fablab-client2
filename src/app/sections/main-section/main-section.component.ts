@@ -1,12 +1,12 @@
-
 import { Component } from '@angular/core';
-import { CarrouselComponent } from './components/carrousel/carrousel.component';
-import { ProyectsComponent } from './components/proyects/proyects.component';
+
+import { CarrouselOwnComponent } from './components/carrousel-own/carrousel-own.component';
+import { ProyectsComponent } from './components/projects/projects.component';
+import { HierarchyTreeComponent } from "./components/hierarchy-tree/hierarchy-tree.component";
 
 @Component({
   selector: 'app-main-section',
-  imports: [CarrouselComponent, ProyectsComponent],
+  imports: [CarrouselOwnComponent, ProyectsComponent, HierarchyTreeComponent],
   templateUrl: './main-section.component.html',
 })
 export class MainSectionComponent {}
-

@@ -12,10 +12,10 @@ interface proyect {
 }
 
 @Component({
-  selector: 'proyects-main',
+  selector: 'projects-main',
   standalone: true,
   imports: [CommonModule, CardComponent],
-  templateUrl: './proyects.component.html',
+  templateUrl: './projects.component.html',
 })
 export class ProyectsComponent {
   dbLocalProyectos: proyect[] = [

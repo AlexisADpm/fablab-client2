@@ -7,7 +7,7 @@
   </div>
   <div class="absolute z-30 bottom-0 w-full h-full flex justify-center">
     <div class="flex justify-between w-full h-full mx-4 items-center">
-      <button class="btn btn-primary" (click)="prev()">Prev</button>
+      <button class="btn btn-primary" (click)="moves(0)">Prev</button>
       <div class="relative gap-2 self-end">
         @for (buttons of objImages; track $index; let idx = $index) {
           <button (click)="goToSlide(idx)">
@@ -15,7 +15,7 @@
           </button>
         }
       </div>
-      <button class="btn btn-primary" (click)="next()">Next</button>
+      <button class="btn btn-primary" (click)="moves(1)">Next</button>
     </div>
   </div>
 </div>
