@@ -1,5 +1,5 @@
 <div class="navbar bg-base-100 shadow-sm">
-    <div class="navbar-start lg:w-[20%]">
+    <div class="navbar-start flex-0">
       <div class="dropdown">
         <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
@@ -14,14 +14,14 @@
       </div>
       <a class="btn btn-ghost text-xl">FABlab</a>
     </div>
-    <div class="navbar-center hidden lg:flex lg:w-[50%]">
-      <ul class="menu menu-horizontal px-1 justify-between w-full">
+    <div class="navbar-center hidden lg:flex flex-1">
+      <ul class="menu menu-horizontal px-1 justify-center w-full gap-20">
         @for (names of menuItems; track $index) {
-            <li class="font-bold cursor-pointer hover:text-gray-500">{{names}}</li>
+            <li class="font-bold cursor-pointer hover:text-gray-500 text-[15px]">{{names}}</li>
         }
       </ul>
     </div>
-    <div class="navbar-end lg:w-[30%]">
+    <div class="navbar-end flex-0">
       <a class="btn btn-outline mx-2 hidden lg:inline-flex">Iniciar sesión</a>
       <p class="hidden lg:inline-flex">/</p>
       <a class="btn mx-2 hidden lg:inline-flex">Inscripción</a>
