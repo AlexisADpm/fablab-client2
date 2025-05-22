@@ -1,13 +1,18 @@
-<div class="overflow-hidden w-[90%] mx-[5%] mt-10 h-[200px] md:h-[500px] relative">
-  <div class="flex carouselMovement h-[200px] md:h-[500px]" #carrousel>
-    <div class="bg-amber-300 min-w-full w-full" #slide>1</div>
-    <div class="bg-blue-500 min-w-full w-full" #slide>2</div>
-    <div class="bg-rose-500 min-w-full w-full" #slide>3</div>
-
+<div class="overflow-hidden w-full h-[300px] md:h-[700px] relative">
+  <div class="flex carouselMovement h-[300px] md:h-[700px]" #carrousel>
+    <div class="bg-amber-300 min-w-full w-full" #slide>
+      <img src="../../../../../assets/imgs/testImages/pexels-ludodelot-18471441 (1).jpg" alt="" class="w-full h-full lg:h-auto">
+    </div>
+    <div class="bg-blue-500 min-w-full w-full" #slide>
+      <img src="../../../../../assets/imgs/testImages/pexels-fauxels-3183150.jpg" alt="" class="w-full h-full lg:h-auto">
+    </div>
+    <div class="bg-rose-500 min-w-full w-full" #slide>
+      <img src="../../../../../assets/imgs/testImages/pexels-ludodelot-18471478.jpg" alt="" class="w-full h-full lg:h-auto">
+    </div>
   </div>
   <div class="absolute z-30 bottom-0 w-full h-full flex justify-center">
     <div class="flex justify-between w-full h-full mx-4 items-center">
-      <button class="btn btn-primary" (click)="moves(0)">Prev</button>
+      <button class="text-3xl cursor-pointer hover:text-gray-100" (click)="moves(0)"><</button>
       <div class="relative gap-2 self-end">
         @for (buttons of objImages; track $index; let idx = $index) {
           <button (click)="goToSlide(idx)">
@@ -15,7 +20,7 @@
           </button>
         }
       </div>
-      <button class="btn btn-primary" (click)="moves(1)">Next</button>
+      <button class="text-3xl cursor-pointer hover:text-gray-100" (click)="moves(1)">></button>
     </div>
   </div>
 </div>
