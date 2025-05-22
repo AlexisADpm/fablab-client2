@@ -4,7 +4,7 @@ import { HierarchyTreeDesktopComponent } from "./components/hierarchy-tree-deskt
 
 @Component({
   selector: 'hierarchy-tree',
-  imports: [MobileSliderComponent, HierarchyTreeDesktopComponent],
+  imports: [MobileSliderComponent],
   templateUrl: './hierarchy-tree.component.html',
   styleUrl: './hierarchy-tree.component.css'
 })
