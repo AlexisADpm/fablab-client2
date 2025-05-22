@@ -6,6 +6,7 @@ import { Component, input, Input } from '@angular/core';
   templateUrl: './card.component.html',
 })
 export class CardComponent {
+  cardID = input<string>('');
   title = input<string>('');
   description = input<string>('');
   imgUrl = input<string>('');
