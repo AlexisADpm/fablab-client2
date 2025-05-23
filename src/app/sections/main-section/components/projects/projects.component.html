@@ -1,4 +1,3 @@
-
 <div class="text-2xl divider divider-start pl-[5%] pr-[5%] pt-10">
   Proyectos destacados:
 </div>
@@ -12,9 +11,10 @@
     [imgUrl]="proyecto.imgUrl"
   ></app-card>
 </section>
-<div class="divider divider-info text-2xl pl-[5%] pr-[5%] pt-10 pb-10">
+<div class="divider text-2xl pl-[5%] pr-[5%] pt-10 pb-10">
   <button
-    class="btn btn-info text-2xl transition-transform duration-300 hover:scale-105 cursor-pointer"
+    class="btn text-2xl transition-transform duration-300 hover:scale-105 cursor-pointer"
+    [routerLink]="['./proyectos']"
   >
     Ver mas proyectos
   </button>

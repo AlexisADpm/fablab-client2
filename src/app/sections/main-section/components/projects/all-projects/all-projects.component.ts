@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { CardComponent } from '../../../../../shared/card/card.component';
+import { Component, signal } from '@angular/core';
+import { CardComponent } from '../components/card/card.component';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FilterComponent } from '../components/filter/filter.component';
 
 interface project {
   proyectId: number;
@@ -10,8 +13,9 @@ interface project {
   imgUrl: string;
 }
 @Component({
-  selector: 'app-all-projects',
-  imports: [CardComponent],
+  selector: 'all-projects',
+  standalone: true,
+  imports: [CommonModule, CardComponent, FilterComponent, RouterLink],
   templateUrl: './all-projects.component.html',
 })
 export class AllProjectsComponent {
