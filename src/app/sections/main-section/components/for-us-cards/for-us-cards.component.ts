@@ -1,7 +1,5 @@
-import { Component} from '@angular/core';
-import { CardComponent } from "../../../../shared/card/card.component";
-
-
+import { Component } from '@angular/core';
+import { CardComponent } from '../projects/components/card/card.component';
 
 @Component({
   selector: 'for-us-cards',
@@ -9,5 +7,4 @@ import { CardComponent } from "../../../../shared/card/card.component";
   templateUrl: './for-us-cards.component.html',
   styleUrl: './for-us-cards.component.css',
 })
-export class ForUsCardsComponent {
-}
+export class ForUsCardsComponent {}
