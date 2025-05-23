@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 
 export const routes: Routes = [
@@ -11,6 +10,11 @@ export const routes: Routes = [
   {
     path: 'proyectos',
     loadComponent: () => import("./pages/projects-page/projects-page.component")
+  },
+  {
+    path:'maquinas',
+    loadChildren: () => import('./pages/machines-page/machines.routes')
+
   },
   {
     path: '**',
