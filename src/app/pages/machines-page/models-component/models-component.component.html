@@ -1,5 +1,7 @@
-<div #modelthree class="overflow-hidden">
-  <h1 class="absolute bg-white">HOLAAAAAAAAAAAAAAAA </h1>
+<div #modelthree class="overflow-hidden relative" (click)="detectObject($event)">
+  <div #informativeElements class="relative">
+  </div>
+  <button class="absolute bg-white cursor-pointer" (click)="nextCameraPosition()">Next Position</button>
 </div>
 
 
