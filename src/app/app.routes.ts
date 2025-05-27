@@ -12,12 +12,11 @@ export const routes: Routes = [
       import('./sections/main-section/components/projects/projects.routes'),
   },
   {
-    path:'maquinas',
-    loadChildren: () => import('./pages/machines-page/machines.routes')
-
+    path: 'maquinas',
+    loadChildren: () => import('./pages/machines-page/machines.routes'),
   },
-  {
-    path: '**',
-    redirectTo: '',
-  },
+  // {
+  //   path: '**',
+  //   redirectTo: '',
+  // },
 ];

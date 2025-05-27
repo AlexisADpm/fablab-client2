@@ -1,11 +1,13 @@
+<h1>Vista de todos los proyectos</h1>
 <section
   class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-6 xl:gap-8 px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto mt-10"
 >
   <app-card
-    *ngFor="let proyecto of dbLocalProyectos"
+    *ngFor="let proyecto of projectdb"
     [title]="proyecto.title"
     [description]="proyecto.description"
     [imgUrl]="proyecto.imgUrl"
+    [routerLink]="[proyecto.proyectId]"
   ></app-card>
 </section>
 <div class="flex justify-end p-[5%]">
