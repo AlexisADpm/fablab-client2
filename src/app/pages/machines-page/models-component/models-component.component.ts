@@ -34,7 +34,15 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
       [0,70,200],
       [80,25,130]
     ],
+    content:{
+      title: "Ender 3 V2",
+      type: "impresora 3D",
+      contentCard:["lorem ipsum","hola","mundo"]
+    }
   }
+
+  //Div con contenido
+  genericDivCard: string = "<div class='card card-dash bg-base-100 w-96'><div class='card-body'><h2 class='card-title'>Card Title</h2><p>A card component has a figure, a body part, and inside body there are title and actions parts</p><div class='card-actions justify-end'><button class='btn btn-primary'>Buy Now</button></div></div></div>" 
 
   //Tomar posicion actual
   actualObjPosition = signal<number>(0);
@@ -160,8 +168,9 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
   nextInformativeSquare(){
     if(this.actualObjPosition()==0){
       this.renderer2.setStyle(this.textContainer.get(0)?.nativeElement.lastChild,'transform',`translateX(${-window.innerWidth*1}px)`);
-      const newElement = this.renderer2.createElement('p');
-      const text = this.renderer2.createText('¡Hola desde el siguiente cuadro!');
+      const newElement = this.renderer2.createElement('div');
+      const text = this.renderer2.setProperty(this.textContainer.get(0)?.nativeElement,'innerHTML',this.genericDivCard);
+
       this.renderer2.addClass(newElement,'absolute');
       this.renderer2.appendChild(newElement, text);
       this.renderer2.appendChild(this.textContainer.get(0)?.nativeElement,newElement);
