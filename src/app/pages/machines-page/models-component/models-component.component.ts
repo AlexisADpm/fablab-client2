@@ -2,9 +2,7 @@ import { Component, inject, ElementRef, OnInit, ViewChild, signal, Renderer2, vi
 import { ActivatedRoute } from '@angular/router';
 import * as THREE from 'three';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
-import {object3d} from '../../../interfaces/objects3d.interface'
-
-
+import {Object3d} from '../../../interfaces/objects3d.interface'
 
 
 @Component({
@@ -14,20 +12,24 @@ import {object3d} from '../../../interfaces/objects3d.interface'
 })
 export default class ModelsComponentComponent implements OnInit,AfterViewInit{
 
-
+  //Inyecciones e inserciones
   constructor(private renderer2: Renderer2){
   }
 
 
+  //REFERENCIAS DEL DOM
+  //tag primer elemento animado
+  @ViewChild('firstElement',{static: true}) firstElement!: ElementRef;
   //Tag de los cuadros
-  @ViewChildren('informativeElements',{}) textContainer!: QueryList<ElementRef>;
-
+  @ViewChild('informativeElements',{static: true}) textContainer!: ElementRef;
+  //Obtenemos tag de canvas
+  @ViewChild('modelthree', { static: true }) canvasContainer!: ElementRef;
 
   //Objeto de prueba
-  modelo3dTest: object3d = {
+  modelo3dTest: Object3d = {
     id: 1,
     name: "Modelo test",
-    type: "STL",
+    typeModel: "STL",
     path: "../../../../assets/Mini_Ender_3_Pro.stl",
     positions: [
       [-18,137,80],
@@ -36,13 +38,30 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
     ],
     content:{
       title: "Ender 3 V2",
-      type: "impresora 3D",
-      contentCard:["lorem ipsum","hola","mundo"]
+      typeName: "impresora 3D",
+      contentCard:[{
+        text: `El fusor, también conocido como hotend,
+        es el componente de la impresora 3D encargado de fundir y extruir el filamento plástico.
+        Lleva el material hasta su punto de fusión y lo deposita capa por capa para construir el objeto con precisión.
+        Su temperatura varía según el tipo de material, como PLA, ABS o PETG, permitiendo una impresión óptima.`,
+        textPosition: "start"
+      },
+      {
+        text: `La cama caliente es la superficie sobre la que se imprime el objeto y puede calentarse para mejorar la adherencia del filamento y reducir el riesgo de deformaciones.
+        En impresoras 3D de resina, su función cambia,
+        ya que sostiene el objeto mientras se forma desde la base mediante fotocurado, garantizando una correcta solidificación de cada capa.`,
+        textPosition: "start"
+      },
+      {
+        text: `El panel interactivo, que puede ser una pantalla táctil o LCD, permite al usuario controlar la impresora y ajustar parámetros como temperatura, velocidad y nivelación.
+        Algunas impresoras avanzadas incluyen pantallas con previsualización del modelo antes de la impresión, lo que facilita la configuración y mejora la experiencia de usuario.`,
+        textPosition: "end"
+      }
+    ]
     }
   }
-
-  //Div con contenido
-  genericDivCard: string = "<div class='card card-dash bg-base-100 w-96'><div class='card-body'><h2 class='card-title'>Card Title</h2><p>A card component has a figure, a body part, and inside body there are title and actions parts</p><div class='card-actions justify-end'><button class='btn btn-primary'>Buy Now</button></div></div></div>" 
+  //Tomar elemento de tarjetas dom para referencia de animacion
+  actualElementAnimate: HTMLElement | null = null;
 
   //Tomar posicion actual
   actualObjPosition = signal<number>(0);
@@ -53,8 +72,6 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
   activeRoute = inject(ActivatedRoute);
   idModel = this.activeRoute.snapshot.paramMap.get('idModel');
 
-  //Obtenemos tag de canvas
-  @ViewChild('modelthree', { static: true }) canvasContainer!: ElementRef;
 
   //Parametros three js
   private scene!: THREE.Scene;
@@ -69,20 +86,17 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
 
   //LifeCyclehooks
   ngOnInit(){
-    console.log(this.idModel);
-    console.log(this.canvasContainer);
     this.initScene();
     this.loadSTLModel();
     this.animate();
   }
 
   ngAfterViewInit(){
-    const newElement = this.renderer2.createElement('p');
-    const text = this.renderer2.createText('¡Hola desde Renderer2!');
-    this.renderer2.addClass(newElement,'absolute');
-    this.renderer2.appendChild(newElement, text);
-    this.renderer2.appendChild(this.textContainer.get(0)?.nativeElement,newElement);
+    this.actualElementAnimate = this.firstElement.nativeElement;
+    console.log(this.actualElementAnimate);
+
   }
+
 
   private initScene(): void {
 
@@ -164,17 +178,71 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
   }
 
   //Siguiente cuadro informativo
-  //TODO: para los cuadros informativos debo 1. crear un div dinamico 2. añadir texto y posicion del cuadro al objeto 3. animacion basica smmoth 4. HARD: hacer el movimiento prev
+  //TODO: 1. Crear la tarjeta de manera dinamica en otra funcion 2. Crear animacion de salida
   nextInformativeSquare(){
-    if(this.actualObjPosition()==0){
-      this.renderer2.setStyle(this.textContainer.get(0)?.nativeElement.lastChild,'transform',`translateX(${-window.innerWidth*1}px)`);
-      const newElement = this.renderer2.createElement('div');
-      const text = this.renderer2.setProperty(this.textContainer.get(0)?.nativeElement,'innerHTML',this.genericDivCard);
+    if(this.actualObjPosition() === this.modelo3dTest.positions.length) return;
 
-      this.renderer2.addClass(newElement,'absolute');
-      this.renderer2.appendChild(newElement, text);
-      this.renderer2.appendChild(this.textContainer.get(0)?.nativeElement,newElement);
+    this.animateCardElementsPrevious(this.actualElementAnimate);
+
+    //arreglar en una funcion mas pequeña
+    let genericDivCard: HTMLElement = this.createCardInformative();
+
+    const newElement = this.renderer2.createElement('div');
+    this.renderer2.appendChild(newElement,genericDivCard);
+
+    this.renderer2.addClass(newElement,'absolute');
+    this.renderer2.addClass(newElement,'w-full');
+    this.renderer2.addClass(newElement,'h-full');
+    this.renderer2.addClass(newElement,'flex');
+    this.renderer2.addClass(newElement,`justify-${this.modelo3dTest.content.contentCard[this.actualObjPosition()].textPosition}`);
+
+    this.renderer2.appendChild(this.textContainer.nativeElement,newElement);
+
+    this.actualElementAnimate = newElement;
+
+  }
+
+  //Creacion tarjeta
+  createCardInformative(): HTMLElement{
+
+    let card = this.renderer2.createElement('div');
+    ['card', 'card-dash', 'bg-base-100', 'w-96', 'my-auto'].forEach((classDOM)=>{
+      this.renderer2.addClass(card,classDOM);
+
+    })
+
+    let cardBody = this.renderer2.createElement('div');
+    this.renderer2.addClass(cardBody,"card-body");
+
+    const title = this.renderer2.createElement('h2');
+    this.renderer2.addClass(title, 'card-title');
+    this.renderer2.setProperty(title, 'innerText', this.modelo3dTest.content.title);
+
+    const paragraph = this.renderer2.createElement('p');
+    this.renderer2.setProperty(paragraph, 'innerText', this.modelo3dTest.content.contentCard[this.actualObjPosition()].text);
+
+    this.renderer2.appendChild(card,cardBody);
+    this.renderer2.appendChild(cardBody,title);
+    this.renderer2.appendChild(cardBody,paragraph);
+
+    if(this.actualObjPosition() < this.modelo3dTest.positions.length-1){
+      const button = this.renderer2.createElement('button');
+      this.renderer2.addClass(button, 'btn');
+      this.renderer2.setProperty(button, 'innerText', 'Siguiente');
+      this.renderer2.listen(button,'click',()=>this.nextCameraPosition());
+      this.renderer2.appendChild(cardBody,button);
     }
+    return card;
+
+  }
+
+
+  //animacion para tarjetas
+  animateCardElementsPrevious(element:HTMLElement | null){
+    console.log(element);
+    if(!element) return;
+
+    this.renderer2.setStyle(element, 'transform', 'translateX(-100%)');
   }
 
   //Funcion para detectar espacios tridimensionales
@@ -191,18 +259,5 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
     }
 
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

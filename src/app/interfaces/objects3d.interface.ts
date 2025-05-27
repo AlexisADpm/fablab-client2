@@ -1,15 +1,21 @@
-export interface object3d{
+export interface Object3d{
   id:number,
   name: string,
-  type: string,
+  typeModel: string,
   path:string,
   positions: number[][],
-  content: textForObject3d
+  content: TextForObject3d
 
 }
 
-interface textForObject3d{
+interface TextForObject3d{
   title:string,
-  type:string,
-  contentCard:string[]
+  typeName:string,
+  contentCard:TextContent[]
+}
+
+//posiciones basadas en clases tailwindCSS
+interface TextContent{
+  text: string,
+  textPosition?: string;
 }
