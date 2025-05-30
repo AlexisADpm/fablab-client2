@@ -3,7 +3,7 @@ import { CardComponent } from '../projects/components/card/card.component';
 
 @Component({
   selector: 'for-us-cards',
-  imports: [CardComponent],
+  imports: [],
   templateUrl: './for-us-cards.component.html',
   styleUrl: './for-us-cards.component.css',
 })
