@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import { CardComponent } from '../../components/card/card.component';
+import { CardComponent } from '../../../../../../shared/components/card/card.component';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import dblocalproyectos from '../../../../../../utils/dblocalproyectos.json';
 import { ProjectsInterface } from '../../../../../../interfaces/projects.interface';
+import { FilterComponent } from '../../components/filter/filter.component';
 
 @Component({
   selector: 'all-projects',
   standalone: true,
-  imports: [CommonModule, CardComponent, RouterLink],
+  imports: [CommonModule, CardComponent, RouterLink, FilterComponent],
   templateUrl: './all-projects.component.html',
 })
 export class AllProjectsComponent {
