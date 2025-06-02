@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import * as THREE from 'three';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import {Object3d} from '../../../interfaces/objects3d.interface'
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 
 @Component({
@@ -23,9 +24,9 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
   //Tag de los cuadros
   @ViewChild('informativeElements',{static: true}) textContainer!: ElementRef;
   //Obtenemos tag de canvas
-  @ViewChild('modelthree', { static: true }) canvasContainer!: ElementRef;
+  @ViewChild('modelthree') canvasContainer!: ElementRef;
 
-  //Objeto de prueba
+  //Objeto de prueba y me falta un campo
   modelo3dTest: Object3d = {
     id: 1,
     name: "Modelo test",
@@ -60,6 +61,7 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
     ]
     }
   }
+  
   //Tomar elemento de tarjetas dom para referencia de animacion
   actualElementAnimate: HTMLElement | null = null;
 
@@ -73,11 +75,14 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
   idModel = this.activeRoute.snapshot.paramMap.get('idModel');
 
 
+
   //Parametros three js
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private renderer!: THREE.WebGLRenderer;
   private model!: THREE.Mesh;
+  //Controles de orbita
+  private controls!: OrbitControls;
 
   //test para detectar posiciones del objeto
   raycaster = new THREE.Raycaster();
@@ -86,27 +91,50 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
 
   //LifeCyclehooks
   ngOnInit(){
-    this.initScene();
-    this.loadSTLModel();
-    this.animate();
   }
 
   ngAfterViewInit(){
+    this.initScene();
+    this.loadSTLModel();
+    this.animate();
     this.actualElementAnimate = this.firstElement.nativeElement;
     console.log(this.actualElementAnimate);
+  }
+
+  ngOnDestroy(){
+    //TODO: liberar memoria de three js
 
   }
+
+
 
 
   private initScene(): void {
 
     this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    this.camera = new THREE.PerspectiveCamera(75, this.canvasContainer.nativeElement.clientWidth / this.canvasContainer.nativeElement.clientHeight, 0.1, 500);
     this.camera.position.set(0, 100, 400);
 
-    this.renderer = new THREE.WebGLRenderer({ antialias: true });
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.canvasContainer.nativeElement.appendChild(this.renderer.domElement);
+    this.renderer = new THREE.WebGLRenderer({canvas: this.canvasContainer.nativeElement,antialias:true});
+    // this.renderer.setSize(window.innerWidth, window.innerHeight);
+    // this.canvasContainer.nativeElement.appendChild(this.renderer.domElement);
+    this.renderer.setSize(
+      this.canvasContainer.nativeElement.clientWidth,
+      this.canvasContainer.nativeElement.clientHeight
+    );
+    this.renderer.setPixelRatio(window.devicePixelRatio);
+
+
+    //Controles de camara
+    this.controls = new OrbitControls( this.camera, this.canvasContainer.nativeElement);
+    this.controls.enableDamping = true; // Activa el damping (inercia)
+    this.controls.dampingFactor = 0.05; // Ajusta el factor de damping
+    this.controls.enabled = false;
+    this.controls.screenSpacePanning = false; // Desactiva paneo en espacio de pantalla
+    this.controls.minDistance = 1;
+    this.controls.maxDistance = 500;
+    this.controls.maxPolarAngle = Math.PI / 2; // Limita el ángulo vertical
+    this.controls.saveState();
 
     //Cambios de color de la escena
     this.scene.background = new THREE.Color(0xffffff);
@@ -143,22 +171,39 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
   //Animar camara de movimiento por frame
   private animate(): void {
     requestAnimationFrame(() => this.animate());
+    // this.controls.update();
     this.renderer.render(this.scene, this.camera);
 
   }
 
+  //Habilitar controles de movimiento
+  free3dMovement():void{
+    this.controls.target.set(0,0,0);
+    (this.controls.enabled)?this.controls.enabled = false: this.controls.enabled = true;
+  }
+
+
+
   //botones para mover camara en escena
   nextCameraPosition(): void{
+
     if(this.animateState) return;
+
+    //Retornamos los controles a su estabo base y bloqueamos el boton
+    if (this.controls.enabled){
+      this.controls.reset();
+      this.controls.enabled = false;
+    }
+
+    //Estado de animacion y aparicion de siguiente cuadro
     this.animateState = true;
     this.nextInformativeSquare();
+
 
     if(this.actualObjPosition() == this.modelo3dTest.positions.length){
       console.log("Terminaron los movimientos");
       return;
     }
-    // let [x,y,z] = this.modelo3dTest.positions[this.actualObjPosition()];
-    // this.camera.position.set(x,y,z);
     const targetPosition = new THREE.Vector3(... this.modelo3dTest.positions[this.actualObjPosition()]);
     const speed = 0.05; // Velocidad de interpolación
     console.log(... this.modelo3dTest.positions[this.actualObjPosition()]);
@@ -170,9 +215,11 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
 
     let animationId = requestAnimationFrame(()=>this.smoothCameraMovement(vector,speed));
     this.camera.position.lerp(vector, speed);
+    console.log("Pase por la actualizacion");
 
     if(this.camera.position.distanceTo(vector) < 0.01){
-      cancelAnimationFrame(animationId);
+      console.log("terminando la animacion de la camara");
+      cancelAnimationFrame(animationId); //animacion no se quede en bucle
       this.animateState = false;
       this.actualObjPosition.update((pos)=>pos+1);
     }
@@ -229,6 +276,7 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
     if(this.actualObjPosition() < this.modelo3dTest.positions.length-1){
       const button = this.renderer2.createElement('button');
       this.renderer2.addClass(button, 'btn');
+      this.renderer2.addClass(button, 'pointer-events-auto');
       this.renderer2.setProperty(button, 'innerText', 'Siguiente');
       this.renderer2.listen(button,'click',()=>this.nextCameraPosition());
       this.renderer2.appendChild(cardBody,button);
@@ -236,7 +284,6 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
     return card;
 
   }
-
 
   //animacion para tarjetas
   animateCardElementsPrevious(element:HTMLElement | null){

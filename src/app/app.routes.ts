@@ -3,7 +3,7 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
 
 export const routes: Routes = [
   {
-    path: '',
+    path:'',
     component: MainPageComponent,
   },
   {
@@ -15,8 +15,8 @@ export const routes: Routes = [
     path: 'maquinas',
     loadChildren: () => import('./pages/machines-page/machines.routes'),
   },
-  // {
-  //   path: '**',
-  //   redirectTo: '',
-  // },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];
