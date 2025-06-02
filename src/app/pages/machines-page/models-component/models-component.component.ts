@@ -140,6 +140,7 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
 
   }
 
+  //Animar camara de movimiento por frame
   private animate(): void {
     requestAnimationFrame(() => this.animate());
     this.renderer.render(this.scene, this.camera);
