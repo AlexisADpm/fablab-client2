@@ -16,7 +16,7 @@ export class HeaderSectionComponent {
   menuItems: navLinks[] = [
     {
       name:"Home",
-      url:"",
+      url:""
     },
     {
       name:"Nosotros",
@@ -29,6 +29,10 @@ export class HeaderSectionComponent {
     {
       name:"Proyectos",
       url:"proyectos"
+    },
+    {
+      name:"Maquinas",
+      url:"maquinas"
     },
     {
       name:"Noticias",
