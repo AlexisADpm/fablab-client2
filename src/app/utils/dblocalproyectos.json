@@ -1,6 +1,6 @@
 [
   {
-    "proyectId": 1,
+    "projectId": 1,
     "participantes": [
       {
         "nombre": "Ana",
@@ -33,7 +33,7 @@
     "imgUrl": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80"
   },
   {
-    "proyectId": 2,
+    "projectId": 2,
     "participantes": [
       {
         "nombre": "Carlos",
@@ -54,7 +54,7 @@
     "imgUrl": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
   },
   {
-    "proyectId": 3,
+    "projectId": 3,
     "participantes": [
       {
         "nombre": "Sofía",
@@ -75,7 +75,7 @@
     "imgUrl": "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80"
   },
   {
-    "proyectId": 4,
+    "projectId": 4,
     "participantes": [
       {
         "nombre": "Pedro",
@@ -96,7 +96,7 @@
     "imgUrl": "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=400&q=80"
   },
   {
-    "proyectId": 5,
+    "projectId": 5,
     "participantes": [
       {
         "nombre": "Elena",
@@ -117,7 +117,7 @@
     "imgUrl": "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
   },
   {
-    "proyectId": 6,
+    "projectId": 6,
     "participantes": [
       {
         "nombre": "Marcos",
