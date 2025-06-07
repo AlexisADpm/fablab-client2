@@ -9,7 +9,6 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'machine-card-item',
   imports: [CategoryFilterPipe],
   templateUrl: './machine-card-item.component.html',
-  styles: ``
 })
 export default class MachineCardItemComponent {
 
@@ -22,7 +21,7 @@ export default class MachineCardItemComponent {
 
 
   //TODO: Recibe el parametro de filtro de la ruta y filtra para el pipe
-  parametroRutaFilter = routes;
+  //parametroRutaFilter = routes;
 
 
 }

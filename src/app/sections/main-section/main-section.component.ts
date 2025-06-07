@@ -4,6 +4,7 @@ import { CarrouselOwnComponent } from './components/carrousel-own/carrousel-own.
 import { HierarchyTreeComponent } from './components/hierarchy-tree/hierarchy-tree.component';
 import { ForUsCardsComponent } from './components/for-us-cards/for-us-cards.component';
 import { ProyectsComponent } from './components/projects/pages/best-projects/projects.component';
+import { FormsRegisterComponent } from "./components/forms-register/forms-register.component";
 
 @Component({
   selector: 'app-main-section',
@@ -12,7 +13,8 @@ import { ProyectsComponent } from './components/projects/pages/best-projects/pro
     HierarchyTreeComponent,
     ForUsCardsComponent,
     ProyectsComponent,
-  ],
+    FormsRegisterComponent
+],
   templateUrl: './main-section.component.html',
 })
 export class MainSectionComponent {}
