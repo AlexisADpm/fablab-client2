@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import {Object3d} from '../../../interfaces/objects3d.interface'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import machinesdata from '../../../data/machines-data/machines-data.json';
 
 
 @Component({
@@ -27,40 +28,7 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
   @ViewChild('modelthree') canvasContainer!: ElementRef;
 
   //Objeto de prueba y me falta un campo
-  modelo3dTest: Object3d = {
-    id: 1,
-    name: "Modelo test",
-    typeModel: "STL",
-    path: "../../../../assets/Mini_Ender_3_Pro.stl",
-    positions: [
-      [-18,137,80],
-      [0,70,200],
-      [80,25,130]
-    ],
-    content:{
-      title: "Ender 3 V2",
-      typeName: "impresora 3D",
-      contentCard:[{
-        text: `El fusor, también conocido como hotend,
-        es el componente de la impresora 3D encargado de fundir y extruir el filamento plástico.
-        Lleva el material hasta su punto de fusión y lo deposita capa por capa para construir el objeto con precisión.
-        Su temperatura varía según el tipo de material, como PLA, ABS o PETG, permitiendo una impresión óptima.`,
-        textPosition: "start"
-      },
-      {
-        text: `La cama caliente es la superficie sobre la que se imprime el objeto y puede calentarse para mejorar la adherencia del filamento y reducir el riesgo de deformaciones.
-        En impresoras 3D de resina, su función cambia,
-        ya que sostiene el objeto mientras se forma desde la base mediante fotocurado, garantizando una correcta solidificación de cada capa.`,
-        textPosition: "start"
-      },
-      {
-        text: `El panel interactivo, que puede ser una pantalla táctil o LCD, permite al usuario controlar la impresora y ajustar parámetros como temperatura, velocidad y nivelación.
-        Algunas impresoras avanzadas incluyen pantallas con previsualización del modelo antes de la impresión, lo que facilita la configuración y mejora la experiencia de usuario.`,
-        textPosition: "end"
-      }
-    ]
-    }
-  }
+  modelo3dTest: Object3d = machinesdata[0];
   
   //Tomar elemento de tarjetas dom para referencia de animacion
   actualElementAnimate: HTMLElement | null = null;
@@ -94,10 +62,12 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
   }
 
   ngAfterViewInit(){
-    this.initScene();
-    this.loadSTLModel();
-    this.animate();
-    this.actualElementAnimate = this.firstElement.nativeElement;
+    if(this.modelo3dTest.isAnimated){
+      this.initScene();
+      this.loadSTLModel();
+      this.animate();
+      this.actualElementAnimate = this.firstElement.nativeElement;
+    }
     console.log(this.actualElementAnimate);
   }
 
@@ -200,13 +170,13 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
     this.nextInformativeSquare();
 
 
-    if(this.actualObjPosition() == this.modelo3dTest.positions.length){
+    if(this.actualObjPosition() == this.modelo3dTest.positions!.length){
       console.log("Terminaron los movimientos");
       return;
     }
-    const targetPosition = new THREE.Vector3(... this.modelo3dTest.positions[this.actualObjPosition()]);
+    const targetPosition = new THREE.Vector3(... this.modelo3dTest.positions![this.actualObjPosition()]);
     const speed = 0.05; // Velocidad de interpolación
-    console.log(... this.modelo3dTest.positions[this.actualObjPosition()]);
+    console.log(... this.modelo3dTest.positions![this.actualObjPosition()]);
     this.smoothCameraMovement(targetPosition,speed);
   }
 
@@ -228,7 +198,7 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
   //Siguiente cuadro informativo
   //TODO: 1. Crear la tarjeta de manera dinamica en otra funcion 2. Crear animacion de salida
   nextInformativeSquare(){
-    if(this.actualObjPosition() === this.modelo3dTest.positions.length) return;
+    if(this.actualObjPosition() === this.modelo3dTest.positions!.length) return;
 
     this.animateCardElementsPrevious(this.actualElementAnimate);
 
@@ -242,7 +212,7 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
     this.renderer2.addClass(newElement,'w-full');
     this.renderer2.addClass(newElement,'h-full');
     this.renderer2.addClass(newElement,'flex');
-    this.renderer2.addClass(newElement,`justify-${this.modelo3dTest.content.contentCard[this.actualObjPosition()].textPosition}`);
+    this.renderer2.addClass(newElement,`justify-${this.modelo3dTest.content!.contentCard[this.actualObjPosition()].textPosition}`);
 
     this.renderer2.appendChild(this.textContainer.nativeElement,newElement);
 
@@ -264,16 +234,16 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
 
     const title = this.renderer2.createElement('h2');
     this.renderer2.addClass(title, 'card-title');
-    this.renderer2.setProperty(title, 'innerText', this.modelo3dTest.content.title);
+    this.renderer2.setProperty(title, 'innerText', this.modelo3dTest.content!.title);
 
     const paragraph = this.renderer2.createElement('p');
-    this.renderer2.setProperty(paragraph, 'innerText', this.modelo3dTest.content.contentCard[this.actualObjPosition()].text);
+    this.renderer2.setProperty(paragraph, 'innerText', this.modelo3dTest.content!.contentCard[this.actualObjPosition()].text);
 
     this.renderer2.appendChild(card,cardBody);
     this.renderer2.appendChild(cardBody,title);
     this.renderer2.appendChild(cardBody,paragraph);
 
-    if(this.actualObjPosition() < this.modelo3dTest.positions.length-1){
+    if(this.actualObjPosition() < this.modelo3dTest.positions!.length-1){
       const button = this.renderer2.createElement('button');
       this.renderer2.addClass(button, 'btn');
       this.renderer2.addClass(button, 'pointer-events-auto');

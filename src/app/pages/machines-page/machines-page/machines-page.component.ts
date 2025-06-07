@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { MachinesCardListComponent } from "../components/machines-card-categories/machines-card-list.component";
+import MachineCardItemComponent from "../components/machine-card-item-list/machine-card-item.component";
 
 @Component({
   selector: 'app-machines-page',
-  imports: [],
+  imports: [MachinesCardListComponent,MachineCardItemComponent],
   templateUrl: './machines-page.component.html',
   styles: ``
 })

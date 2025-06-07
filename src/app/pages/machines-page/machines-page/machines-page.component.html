@@ -1,29 +1,11 @@
 <section class="w-full h-screen flex">
-  <div class="mt-2 p-4 w-fit h-full">
-    <h1 class="text-2xl font-bold">Maquinas</h1>
-    <ul class="mt-2">
-      <li class="border-l-2 p-2 cursor-pointer hover:text-gray-500">Todas</li>
-      <li class="border-l-2 p-2 cursor-pointer hover:text-gray-500">Maquinas de impresion 3d</li>
-      <li class="border-l-2 p-2 cursor-pointer hover:text-gray-500">Cortadoras laser</li>
-      <li class="border-l-2 p-2 cursor-pointer hover:text-gray-500">Brazos roboticos</li>
-    </ul>
-  </div>
-  <div class="w-full h-screen">
+  <machines-card-list></machines-card-list>
+  <div class="w-full h-screen flex flex-col">
     <h1 class="mt-2 p-4 text-2xl font-bold">Todas</h1>
-      <div class="shadow-lg flex w-[500px]" style="font-family: 'Strait', sans-serif;">
-        <img class="w-[30%] h-full" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhfJ5hSkM1pGC5I_gTNx-Bmpyb0QrwWm-TwiARKclttVPrZrIKfr0bTHyP0afaIHL7zks-AbODA7zAf9LYhKdKVM6s2YXB8jkFl-fWBTmse2y6O68grQjw6tOOMrtdsG1qkVOwRT05R5XVZIoRoJFsn_wUqkrABJwEGZN0Q0OZlLZxis2zkhOH2u1RI_dNd/s518/colobus.jpg" alt="Sunset in the mountains">
-        <div class="px-6 py-4 w-[400px]">
-          <div class="font-bold text-xl mb-2">Monkey</div>
-          <p class="text-gray-700 text-base">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-          </p>
-          <br>
-          <a target="_blank" href="https://bootsnipp.com/muhittinbudak" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
-          Bootstrap 3 examples
-          </a>
-        </div>
-
-      </div>
+    <div class="flex w-full">
+      <machine-card-item></machine-card-item>
+    </div>
+      
   </div>
 </section>
 

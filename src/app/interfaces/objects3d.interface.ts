@@ -1,10 +1,13 @@
 export interface Object3d{
   id:number,
   name: string,
+  category:string,
+  description: string,
   typeModel: string,
-  path:string,
-  positions: number[][],
-  content: TextForObject3d
+  isAnimated: boolean
+  path?:string,
+  positions?: number[][],
+  content?: TextForObject3d
 
 }
 

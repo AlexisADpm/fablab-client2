@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "name": "Ender 3 V2",
+    "category":"Maquina de impresion 3d",
+    "description": "La Ender 3 V2 es una impresora 3D de escritorio de modelado por deposición fundida (FDM) fabricada por Creality. Es una versión mejorada de la popular Ender 3, diseñada para ofrecer una experiencia de impresión más fácil y silenciosa, ideal tanto para principiantes como para usuarios con más experiencia.",
+    "typeModel": "STL",
+    "isAnimated": true,
+    "path": "../../../../assets/Mini_Ender_3_Pro.stl",
+    "positions": [
+      [-18,137,80],
+      [0,70,200],
+      [80,25,130]
+    ],
+    "content":{
+      "title": "Ender 3 V2",
+      "typeName": "impresora 3D",
+      "contentCard":[{
+        "text": "El fusor, también conocido como hotend,es el componente de la impresora 3D encargado de fundir y extruir el filamento plástico.Lleva el material hasta su punto de fusión y lo deposita capa por capa para construir el objeto con precisión.Su temperatura varía según el tipo de material, como PLA, ABS o PETG, permitiendo una impresión óptima.",
+        "textPosition": "start"
+      },
+      {
+        "text": "La cama caliente es la superficie sobre la que se imprime el objeto y puede calentarse para mejorar la adherencia del filamento y reducir el riesgo de deformaciones.En impresoras 3D de resina, su función cambia,ya que sostiene el objeto mientras se forma desde la base mediante fotocurado, garantizando una correcta solidificación de cada capa.",
+        "textPosition": "start"
+      },
+      {
+        "text": "El panel interactivo, que puede ser una pantalla táctil o LCD, permite al usuario controlar la impresora y ajustar parámetros como temperatura, velocidad y nivelación.Algunas impresoras avanzadas incluyen pantallas con previsualización del modelo antes de la impresión, lo que facilita la configuración y mejora la experiencia de usuario.",
+        "textPosition": "end"
+      }
+    ]
+    }
+  },
+  {
+    "id": 2,
+    "name": "Filamento PLA",
+    "category": "Cortadoras laser",
+    "description": "El filamento PLA (Ácido Poliláctico) es un termoplástico biodegradable derivado de recursos renovables como el maíz o la caña de azúcar. Es uno de los materiales más populares para la impresión 3D debido a su facilidad de uso, baja deformación y compatibilidad con la mayoría de las impresoras FDM. Es ideal para piezas no funcionales y prototipos.",
+    "typeModel": "OBJ",
+    "isAnimated": false,
+    "path": "../../../../assets/Mini_Ender_3_Pro.stl"
+    
+  },
+  {
+    "id": 3,
+    "name": "Resina UV estándar",
+    "category": "Cortadoras laser",
+    "description": "La resina UV estándar es un fotopolímero líquido que se cura bajo luz ultravioleta. Es el material más común para impresoras 3D de resina (SLA/DLP/LCD) y ofrece una alta precisión y detalle en las impresiones. Es ideal para modelos con geometrías complejas y superficies lisas, aunque suele ser más frágil que el PLA.",
+    "typeModel": "STL",
+    "isAnimated": false,
+    "path": "../../../../assets/Mini_Ender_3_Pro.stl"
+    
+  },
+  {
+    "id": 4,
+    "name": "Creality CR-10 Smart Pro",
+    "category": "Maquina de impresion 3d",
+    "description": "La Creality CR-10 Smart Pro es una impresora 3D FDM de gama alta con conectividad inteligente y características avanzadas. Ofrece un gran volumen de impresión, nivelación automática, extrusor de doble engranaje y una pantalla táctil a color. Es perfecta para usuarios que buscan mayor comodidad y fiabilidad en sus impresiones.",
+    "typeModel": "FBX",
+    "isAnimated": true,
+    "path": "../../../../assets/Mini_Ender_3_Pro.stl",
+    "positions": [
+      [50, 100, 150],
+      [-20, 50, 80],
+      [100, 150, 20]
+    ],
+    "content": {
+      "title": "CR-10 Smart Pro",
+      "typeName": "impresora 3D avanzada",
+      "contentCard": [
+        {
+          "text": "La conectividad Wi-Fi permite controlar la impresora de forma remota a través de una aplicación móvil, lo que facilita el inicio y seguimiento de las impresiones desde cualquier lugar. También es posible cargar modelos y actualizar el firmware de forma inalámbrica, mejorando la experiencia de usuario.",
+          "textPosition": "start"
+        },
+        {
+          "text": "El extrusor de doble engranaje proporciona una alimentación de filamento más potente y consistente, lo que reduce los problemas de subextrusión y mejora la calidad de impresión, especialmente con materiales flexibles. Esto garantiza una mayor fiabilidad y un mejor acabado en las piezas.",
+          "textPosition": "start"
+        },
+        {
+          "text": "La nivelación automática de la cama, asistida por un sensor BLTouch, simplifica enormemente la preparación de la impresora, asegurando una primera capa perfecta en cada impresión. Esta función reduce el tiempo de configuración y minimiza los errores, facilitando el proceso para usuarios de todos los niveles.",
+          "textPosition": "end"
+        }
+      ]
+    }
+  }
+      
+]
