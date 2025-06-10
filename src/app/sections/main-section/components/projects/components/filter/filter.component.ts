@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './filter.component.html',
 })
-export class FilterComponent {}
+export class FilterComponent {
+  showTypes: any;
+}

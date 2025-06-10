@@ -13,4 +13,7 @@ import { ProjectsInterface } from '../../../../../../interfaces/projects.interfa
 })
 export class ProyectsComponent {
   proyecto: ProjectsInterface[] = dblocalproyectos;
+  ngOnInit() {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
 }
