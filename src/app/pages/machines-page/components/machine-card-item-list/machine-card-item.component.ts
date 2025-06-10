@@ -1,27 +1,40 @@
-import { Component, input } from '@angular/core';
+import { Component, input, linkedSignal, OnDestroy, OnInit, output, signal } from '@angular/core';
 import { Object3d } from '../../../../interfaces/objects3d.interface';
 import machinesdata from '../../../../data/machines-data/machines-data.json';
 import { CategoryFilterPipe } from '../../../../pipes/machines.pipe';
 import routes from '../../machines.routes';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'machine-card-item',
-  imports: [CategoryFilterPipe],
+  imports: [CategoryFilterPipe,RouterLink],
   templateUrl: './machine-card-item.component.html',
 })
-export default class MachineCardItemComponent {
+export default class MachineCardItemComponent implements OnInit,OnDestroy{
+
+
+
+  constructor(private route: ActivatedRoute){}
 
   //local data de test
   machines:Object3d[] =  machinesdata;
+  category = signal<string>("todas");
 
-  ngOnInit(){
-    console.log(this.machines);
+
+  //Se define un Subscription que actua como manija de conexion para gestionar subscripciones y fugas de memoria
+  queryParamsSubscription: Subscription | undefined;
+
+  ngOnInit(): void {
+    this.queryParamsSubscription = this.route.paramMap.subscribe((value)=>{
+      if(value.get("category") != null){
+        this.category.set(value.get("category")!);
+      }
+    })
   }
 
-
-  //TODO: Recibe el parametro de filtro de la ruta y filtra para el pipe
-  //parametroRutaFilter = routes;
-
+  ngOnDestroy(): void {
+    this.queryParamsSubscription?.unsubscribe();
+  }
 
 }

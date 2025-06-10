@@ -1,16 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, input, OnInit, signal } from '@angular/core';
 import { MachinesCardListComponent } from "../components/machines-card-categories/machines-card-list.component";
-import MachineCardItemComponent from "../components/machine-card-item-list/machine-card-item.component";
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-machines-page',
-  imports: [MachinesCardListComponent,MachineCardItemComponent],
+  imports: [MachinesCardListComponent,RouterOutlet],
   templateUrl: './machines-page.component.html',
   styles: ``
 })
-export class MachinesPageComponent {
+export class MachinesPageComponent{
 
-
-
-
+  categoryHeaderName = signal<string>("Todas");
 }

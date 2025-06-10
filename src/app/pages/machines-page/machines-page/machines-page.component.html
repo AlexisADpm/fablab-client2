@@ -1,13 +1,10 @@
-<section class="w-full h-screen flex">
+<section class="w-full flex mb-10 h-screen">
   <machines-card-list></machines-card-list>
-  <div class="w-full h-screen flex flex-col">
-    <h1 class="mt-2 p-4 text-2xl font-bold">Todas</h1>
-    <div class="flex w-full">
-      <machine-card-item></machine-card-item>
+  <div class="w-full flex flex-col overflow-y-auto">
+    <div class="flex w-full h-full">
+      <router-outlet />
     </div>
-      
   </div>
 </section>
-
 
 

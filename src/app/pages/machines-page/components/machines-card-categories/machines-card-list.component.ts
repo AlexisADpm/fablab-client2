@@ -1,15 +1,30 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { navLinks } from '../../../../interfaces/navLinks.interface';
 
 @Component({
   selector: 'machines-card-list',
-  imports: [],
+  imports: [RouterLink,RouterLinkActive],
   templateUrl: './machines-card-list.component.html',
   styles: ``
 })
-export class MachinesCardListComponent {
+export class MachinesCardListComponent{
 
   //categorias disponibles
-  categories:string[] = ["Todas","Maquinas de impresion 3d","Cortadoras laser","Brazos roboticos"];
+  //TODO: Interfaz para nombres y url correctas CORREGIR ESTA IMPLEMENTACION
+  categories: navLinks[] = [
+    {
+      name:"Todas",
+      url:"todas"},
+    {
+      name:"Maquinas de impresión 3D",
+      url:"maquinasdeimpresion3d"},
+    {
+      name:"Cortadoras Laser",
+      url:"cortadoraslaser"},
+    {
+      name:"Brazos Robóticos",
+      url:"brazosroboticos"
+    }];
 
-  
 }

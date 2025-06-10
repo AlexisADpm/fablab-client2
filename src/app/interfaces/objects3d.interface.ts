@@ -1,8 +1,13 @@
+
+
+
+
 export interface Object3d{
   id:number,
   name: string,
   category:string,
   description: string,
+  imageUrl:string
   typeModel: string,
   isAnimated: boolean
   path?:string,

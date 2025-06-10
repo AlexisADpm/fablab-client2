@@ -27,9 +27,12 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
   //Obtenemos tag de canvas
   @ViewChild('modelthree') canvasContainer!: ElementRef;
 
+  //id de modelo
+  idModel:number = 0;
+
   //Objeto de prueba y me falta un campo
-  modelo3dTest: Object3d = machinesdata[0];
-  
+  modelo3dTest: Object3d | null | undefined = null;
+
   //Tomar elemento de tarjetas dom para referencia de animacion
   actualElementAnimate: HTMLElement | null = null;
 
@@ -40,7 +43,6 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
   animateState: boolean = false;
   //Obtenemos parametros de la ruta
   activeRoute = inject(ActivatedRoute);
-  idModel = this.activeRoute.snapshot.paramMap.get('idModel');
 
 
 
@@ -59,22 +61,63 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
 
   //LifeCyclehooks
   ngOnInit(){
+    //Tomamos paramtros de ruta
+    this.idModel = parseInt(this.activeRoute.snapshot.paramMap.get('idModel')!);
+    //saber si el modelo existe en caso de que no, se evalua en ngafterview
+    this.modelo3dTest = machinesdata.find((model)=>model.id === this.idModel)
   }
 
   ngAfterViewInit(){
-    if(this.modelo3dTest.isAnimated){
+    if(this.modelo3dTest && this.modelo3dTest.isAnimated){
       this.initScene();
       this.loadSTLModel();
       this.animate();
       this.actualElementAnimate = this.firstElement.nativeElement;
+    }else if(!this.modelo3dTest){
+      console.warn("El modelo no existe");
     }
     console.log(this.actualElementAnimate);
   }
 
-  ngOnDestroy(){
-    //TODO: liberar memoria de three js
+  ngOnDestroy(): void {
 
+    // 1. Limpiar el renderizador (libera el contexto WebGL)
+    if (this.renderer) {
+      this.renderer.dispose();
+    }
+
+    // 2. Limpiar la escena y sus objetos (geometrías y materiales)
+    if (this.scene) {
+      this.scene.traverse((object: any) => {
+        // Si el objeto es un Mesh (un modelo 3D)
+        if (object.isMesh) {
+          // Disponer de la geometría
+          if (object.geometry) {
+            object.geometry.dispose();
+          }
+          // Disponer del material (puede ser un array de materiales)
+          if (object.material) {
+            if (Array.isArray(object.material)) {
+              for (const material of object.material) {
+                material.dispose();
+              }
+            } else {
+              object.material.dispose();
+            }
+          }
+        }
+      });
+    }
+      // Limpiar los hijos de la escena para asegurar que no queden referencias
+    while(this.scene.children.length > 0){
+      this.scene.remove(this.scene.children[0]);
+    }
+    // 3. Opcional: Limpiar los controles de órbita si los has inicializado
+    if (this.controls) {
+      this.controls.dispose();
+    }
   }
+
 
 
 
@@ -170,13 +213,13 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
     this.nextInformativeSquare();
 
 
-    if(this.actualObjPosition() == this.modelo3dTest.positions!.length){
+    if(this.actualObjPosition() == this.modelo3dTest!.positions!.length){
       console.log("Terminaron los movimientos");
       return;
     }
-    const targetPosition = new THREE.Vector3(... this.modelo3dTest.positions![this.actualObjPosition()]);
+    const targetPosition = new THREE.Vector3(... this.modelo3dTest!.positions![this.actualObjPosition()]);
     const speed = 0.05; // Velocidad de interpolación
-    console.log(... this.modelo3dTest.positions![this.actualObjPosition()]);
+    console.log(... this.modelo3dTest!.positions![this.actualObjPosition()]);
     this.smoothCameraMovement(targetPosition,speed);
   }
 
@@ -198,7 +241,7 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
   //Siguiente cuadro informativo
   //TODO: 1. Crear la tarjeta de manera dinamica en otra funcion 2. Crear animacion de salida
   nextInformativeSquare(){
-    if(this.actualObjPosition() === this.modelo3dTest.positions!.length) return;
+    if(this.actualObjPosition() === this.modelo3dTest!.positions!.length) return;
 
     this.animateCardElementsPrevious(this.actualElementAnimate);
 
@@ -212,7 +255,7 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
     this.renderer2.addClass(newElement,'w-full');
     this.renderer2.addClass(newElement,'h-full');
     this.renderer2.addClass(newElement,'flex');
-    this.renderer2.addClass(newElement,`justify-${this.modelo3dTest.content!.contentCard[this.actualObjPosition()].textPosition}`);
+    this.renderer2.addClass(newElement,`justify-${this.modelo3dTest!.content!.contentCard[this.actualObjPosition()].textPosition}`);
 
     this.renderer2.appendChild(this.textContainer.nativeElement,newElement);
 
@@ -234,16 +277,16 @@ export default class ModelsComponentComponent implements OnInit,AfterViewInit{
 
     const title = this.renderer2.createElement('h2');
     this.renderer2.addClass(title, 'card-title');
-    this.renderer2.setProperty(title, 'innerText', this.modelo3dTest.content!.title);
+    this.renderer2.setProperty(title, 'innerText', this.modelo3dTest!.content!.title);
 
     const paragraph = this.renderer2.createElement('p');
-    this.renderer2.setProperty(paragraph, 'innerText', this.modelo3dTest.content!.contentCard[this.actualObjPosition()].text);
+    this.renderer2.setProperty(paragraph, 'innerText', this.modelo3dTest!.content!.contentCard[this.actualObjPosition()].text);
 
     this.renderer2.appendChild(card,cardBody);
     this.renderer2.appendChild(cardBody,title);
     this.renderer2.appendChild(cardBody,paragraph);
 
-    if(this.actualObjPosition() < this.modelo3dTest.positions!.length-1){
+    if(this.actualObjPosition() < this.modelo3dTest!.positions!.length-1){
       const button = this.renderer2.createElement('button');
       this.renderer2.addClass(button, 'btn');
       this.renderer2.addClass(button, 'pointer-events-auto');
