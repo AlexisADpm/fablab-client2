@@ -6,6 +6,7 @@ import routes from '../../machines.routes';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 
+
 @Component({
   selector: 'machine-card-item',
   imports: [CategoryFilterPipe,RouterLink],
