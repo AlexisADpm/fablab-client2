@@ -15,7 +15,7 @@
       <a class="btn btn-ghost text-xl">FABlab</a>
     </div>
     <div class="navbar-center hidden lg:flex grow">
-      <ul class="menu menu-horizontal px-1 justify-center w-full gap-20">
+      <ul class="menu menu-horizontal px-1 justify-center w-full gap-10">
         @for (names of menuItems; track $index) {
             <li class="font-bold cursor-pointer hover:text-gray-500 text-[15px]" [routerLink]="['/', names.url]">{{names.name}}</li>
         }
