@@ -1,9 +1,10 @@
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './pages/main-page/main-page.component';
+import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
   {
-    path:'',
+    path: '',
     component: MainPageComponent,
   },
   {
@@ -20,3 +21,13 @@ export const routes: Routes = [
     redirectTo: '',
   },
 ];
+@NgModule({
+  imports: [
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'enabled',
+      anchorScrolling: 'enabled',
+    }),
+  ],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}

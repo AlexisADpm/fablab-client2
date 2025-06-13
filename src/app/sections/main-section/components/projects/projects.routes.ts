@@ -16,4 +16,5 @@ export const routes: Routes = [
     redirectTo: '',
   },
 ];
+
 export default routes;
