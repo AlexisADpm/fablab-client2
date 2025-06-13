@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'filter-component',
   imports: [],
   templateUrl: './filter.component.html',
 })
-export class FilterComponent {}
+export class FilterComponent {
+}
