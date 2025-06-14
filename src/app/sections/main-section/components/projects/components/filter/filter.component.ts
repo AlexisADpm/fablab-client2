@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 
 @Component({
   selector: 'filter-component',
@@ -6,4 +6,14 @@ import { Component, signal } from '@angular/core';
   templateUrl: './filter.component.html',
 })
 export class FilterComponent {
+
+  filtrosAplicados = output<string[]>();
+
+
+  constructor(){}
+
+  applyFilters(){
+    this.filtrosAplicados.emit(["hola"]);
+  }
+
 }
