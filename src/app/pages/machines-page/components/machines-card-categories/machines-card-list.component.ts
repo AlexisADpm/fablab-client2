@@ -10,6 +10,7 @@ import { navLinks } from '../../../../interfaces/navLinks.interface';
 })
 export class MachinesCardListComponent{
 
+
   //categorias disponibles
   //TODO: Interfaz para nombres y url correctas CORREGIR ESTA IMPLEMENTACION
   categories: navLinks[] = [
