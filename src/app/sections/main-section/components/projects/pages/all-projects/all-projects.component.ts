@@ -24,9 +24,10 @@ import { filterProjectsPipe } from '../../../../../../pipes/filterProyects.pipe'
 export class AllProjectsComponent {
   proyecto: ProjectsInterface[] = dblocalproyectos;
 
-  filtrosRecibidos = signal<string[]>(["Otro"]);
+  filtrosRecibidos = signal<string[]>([]);
 
   recibirFiltros(filtros:string[]): void{
+    this.filtrosRecibidos.set(filtros);
 
   }
 

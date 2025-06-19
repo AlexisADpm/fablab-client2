@@ -23,10 +23,6 @@ export class HeaderSectionComponent {
       url:""
     },
     {
-      name:"Equipo",
-      url:""
-    },
-    {
       name:"Proyectos",
       url:"proyectos"
     },

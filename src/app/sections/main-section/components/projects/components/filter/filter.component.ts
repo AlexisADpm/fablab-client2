@@ -32,9 +32,17 @@ export class FilterComponent implements AfterViewInit{
 
 
   applyFilters(){
+    const filtrosSeleccionados: string[] = [];
 
+    this.optionsSelected.forEach((option: ElementRef) => {
+      if(option.nativeElement.checked){
+        filtrosSeleccionados.push(option.nativeElement.value);
+      }
+    });
+    
+    console.log(filtrosSeleccionados);
 
-    this.filtrosAplicados.emit(["hola"]);
+    this.filtrosAplicados.emit(filtrosSeleccionados);
   }
 
 }
