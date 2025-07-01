@@ -10,5 +10,6 @@ import { RouterOutlet } from '@angular/router';
 })
 export class MachinesPageComponent{
 
+  //Nombre de categoria desde categorias
   categoryHeaderName = signal<string>("Todas");
 }

@@ -17,6 +17,10 @@ export const routes: Routes = [
     loadChildren: () => import('./pages/machines-page/machines.routes'),
   },
   {
+    path: 'noticias',
+    loadChildren: () => import('./pages/news-page/news.routes')
+  },
+  {
     path: '**',
     redirectTo: '',
   },

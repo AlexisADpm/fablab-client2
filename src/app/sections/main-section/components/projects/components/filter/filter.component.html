@@ -1,9 +1,8 @@
-<div class="m-2 max-w-screen-m">
-  <div class="border-r border-gray-100 p-6 shadow-lg">
-    <h2 class="text-xl font-bold">Aplica filtros</h2>
-    <p class="mt-1 text-sm">
-      Usa filtros para encontrar el tipo de proyecto que buscas
-    </p>
+<div class="mt-2 max-w-screen">
+  <div class="border-r border-gray-100 p-4 shadow-lg">
+    <h2 class="text-2xl font-bold">Proyectos</h2>
+    <h2 class="text-xl mt-2">Filtros</h2>
+    <div class="divider my-2"></div>
     <div class="mt-4 grid grid-cols-1 gap-1">
       <div class="flex flex-col">
         Nombre del proyecto:
@@ -19,12 +18,13 @@
 
       <div class="flex flex-col">
         <label class="font-medium mb-1">Tipo de proyecto</label>
-        <div class="flex flex-col gap-2 mt-2">
+        <div class="flex flex-col gap-2 mt-2" >
           <label class="inline-flex items-center">
             <input
               type="checkbox"
               class="form-checkbox text-blue-600"
               value="Impresion 3D"
+              #options
             />
             <span class="ml-2">Impresion 3D</span>
           </label>
@@ -33,6 +33,7 @@
               type="checkbox"
               class="form-checkbox text-blue-600"
               value="Corte laser"
+              #options
             />
             <span class="ml-2">Corte laser</span>
           </label>
@@ -41,6 +42,7 @@
               type="checkbox"
               class="form-checkbox text-blue-600"
               value="Electronica"
+              #options
             />
             <span class="ml-2">Electronica</span>
           </label>
@@ -57,11 +59,16 @@
               type="checkbox"
               class="form-checkbox text-blue-600"
               value="Otro"
+              #options
             />
             <span class="ml-2">Otro</span>
           </label>
         </div>
       </div>
+
+      <button class="btn w-full" (click)="applyFilters()">Aplicar filtros</button>
+
+
 
       <!-- ------------------------------------------------------------------------------------------------------------------------------------- -->
       <div class="divider m-0"></div>

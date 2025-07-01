@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CardComponent } from '../../shared/components/card/card.component';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -7,6 +7,7 @@ import { ProjectsInterface } from '../../interfaces/projects.interface';
 import { FilterComponent } from '../../sections/main-section/components/projects/components/filter/filter.component';
 import { OrderByComponent } from '../../sections/main-section/components/projects/components/order-by/order-by.component';
 import { ProjectsFilterPipe } from '../../pipes/projectsFilter.pipe';
+import { filterProjectsPipe } from '../../pipes/filterProyects.pipe';
 
 @Component({
   selector: 'all-projects',
@@ -17,12 +18,19 @@ import { ProjectsFilterPipe } from '../../pipes/projectsFilter.pipe';
     RouterLink,
     FilterComponent,
     OrderByComponent,
-    ProjectsFilterPipe,
+    filterProjectsPipe,
   ],
   templateUrl: './all-projects.component.html',
 })
 export class AllProjectsComponent {
   proyecto: ProjectsInterface[] = dblocalproyectos;
+
+  filtrosRecibidos = signal<string[]>([]);
+
+  recibirFiltros(filtros: string[]): void {
+    this.filtrosRecibidos.set(filtros);
+  }
+
   ngOnInit() {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }

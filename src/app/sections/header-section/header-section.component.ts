@@ -30,7 +30,7 @@ export class HeaderSectionComponent {
     },
     {
       name: 'Noticias',
-      url: '',
+      url: 'noticias',
     },
   ];
 

@@ -2,7 +2,6 @@ import { Component, input, linkedSignal, OnDestroy, OnInit, output, signal } fro
 import { Object3d } from '../../../../interfaces/objects3d.interface';
 import machinesdata from '../../../../data/machines-data/machines-data.json';
 import { CategoryFilterPipe } from '../../../../pipes/machines.pipe';
-import routes from '../../machines.routes';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -21,6 +20,7 @@ export default class MachineCardItemComponent implements OnInit,OnDestroy{
   //local data de test
   machines:Object3d[] =  machinesdata;
   category = signal<string>("todas");
+  widthWindow= signal<number>(window.innerWidth);
 
 
   //Se define un Subscription que actua como manija de conexion para gestionar subscripciones y fugas de memoria
