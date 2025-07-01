@@ -1,30 +1,76 @@
-<div class="navbar bg-base-100 shadow-sm flex">
-    <div class="navbar-start w-fit">
+<div class="bg-gradient-to-r from-slate-900 to-slate-800">
+  <div class="navbar text-white shadow-md px-6 py-4 rounded-b-2xl">
+    <!-- Logo y menú hamburguesa -->
+    <div class="navbar-start">
       <div class="dropdown">
-        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+        <div
+          tabindex="0"
+          role="button"
+          class="btn btn-ghost lg:hidden text-white"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
         </div>
         <ul
           tabindex="0"
-          class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+          class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-slate-800 rounded-box w-52"
+        >
           @for (names of menuItems; track $index) {
-            <li class="font-bold cursor-pointer hover:text-gray-500" [routerLink]="['/', names.url]" (click)="testButton(names.url)">{{names.name}}</li>
+          <li>
+            <a
+              [routerLink]="['/', names.url]"
+              (click)="testButton(names.url)"
+              class="text-white hover:text-indigo-400 font-semibold transition duration-200"
+            >
+              {{ names.name }}
+            </a>
+          </li>
           }
         </ul>
       </div>
-      <a class="btn btn-ghost text-xl">FABlab</a>
+      <a class="text-2xl font-bold tracking-wide ml-2">Fablab</a>
     </div>
+
+    <!-- Menú en escritorio -->
     <div class="navbar-center hidden lg:flex grow">
-      <ul class="menu menu-horizontal px-1 justify-center w-full gap-10">
+      <ul class="menu menu-horizontal gap-6 justify-center w-full">
         @for (names of menuItems; track $index) {
-            <li class="font-bold cursor-pointer hover:text-gray-500 text-[15px]" [routerLink]="['/', names.url]">{{names.name}}</li>
+        <li>
+          <a
+            [routerLink]="['/', names.url]"
+            class="hover:text-indigo-400 transition duration-200 font-medium text-[15px]"
+          >
+            {{ names.name }}
+          </a>
+        </li>
         }
       </ul>
     </div>
-    <div class="navbar-end w-fit">
-      <a class="btn btn-outline mx-2 hidden lg:inline-flex"[href]="'http://localhost:4200'">Iniciar sesión</a>
-      <p class="hidden lg:inline-flex">/</p>
-      <a class="btn mx-2 hidden lg:inline-flex" [href]="'http://localhost:4200'">Inscripción</a>
 
+    <!-- Botones a la derecha -->
+    <div class="navbar-end gap-2 hidden lg:flex">
+      <a
+        class="px-4 py-2 border border-indigo-500 text-white rounded-xl hover:bg-indigo-600 transition"
+      >
+        Iniciar sesión
+      </a>
+      <a
+        class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-xl text-white transition"
+      >
+        Inscripción
+      </a>
     </div>
   </div>
+</div>
