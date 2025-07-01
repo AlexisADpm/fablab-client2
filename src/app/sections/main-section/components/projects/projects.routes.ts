@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { IndividualProjectComponent } from './pages/individual-project/individual-project.component';
-import { AllProjectsComponent } from './pages/all-projects/all-projects.component';
+import { AllProjectsComponent } from '../../../../pages/projects-page/all-projects.component';
 
 export const routes: Routes = [
   {

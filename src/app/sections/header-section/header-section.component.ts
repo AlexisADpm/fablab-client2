@@ -1,7 +1,7 @@
 import { LowerCasePipe } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import {navLinks} from '../../interfaces/navLinks.interface'
+import { navLinks } from '../../interfaces/navLinks.interface';
 
 @Component({
   selector: 'app-header-section',
@@ -9,42 +9,32 @@ import {navLinks} from '../../interfaces/navLinks.interface'
   templateUrl: './header-section.component.html',
 })
 export class HeaderSectionComponent {
-
-
   //Menu items
 
   menuItems: navLinks[] = [
     {
-      name:"Home",
-      url:""
+      name: 'Home',
+      url: '',
     },
     {
-      name:"Nosotros",
-      url:""
+      name: 'Nosotros',
+      url: '',
     },
     {
-      name:"Equipo",
-      url:""
+      name: 'Proyectos',
+      url: 'proyectos',
     },
     {
-      name:"Proyectos",
-      url:"proyectos"
+      name: 'Maquinas',
+      url: 'maquinas',
     },
     {
-      name:"Maquinas",
-      url:"maquinas"
+      name: 'Noticias',
+      url: '',
     },
-    {
-      name:"Noticias",
-      url:""
-    }
-  ]
+  ];
 
-  testButton(a:string){
+  testButton(a: string) {
     console.log(a);
-
   }
-
-
-
 }
