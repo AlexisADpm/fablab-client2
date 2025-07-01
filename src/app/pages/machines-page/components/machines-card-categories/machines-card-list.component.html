@@ -4,7 +4,7 @@
     <div class="divider my-2"></div>
     <ul class="mt-2">
         @for (category of categories; track $index) {
-          <div class="flex my-2" [routerLink]="`/maquinas/${category.url}`" [routerLinkActive]="['border-l-4','font-bold']">
+          <div class="flex my-2" [routerLink]="`/maquinas/${category.url}`" [routerLinkActive]="['border-l-4','font-bold']" (click)="emitCategoryToMachines(category.name)">
             <li class="cursor-pointer hover:bg-gray-300/20 rounded-md w-full">
               <p class="ml-2">
                 {{category.name}}

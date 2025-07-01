@@ -5,7 +5,7 @@ import { Component, output, signal, Renderer2, ViewChild, ElementRef, AfterViewI
   imports: [],
   templateUrl: './filter.component.html',
 })
-export class FilterComponent implements AfterViewInit{
+export class FilterComponent{
 
 
   @ViewChildren("options") optionsSelected!: QueryList<ElementRef>;
@@ -13,22 +13,6 @@ export class FilterComponent implements AfterViewInit{
 
   filtrosAplicados = output<string[]>();
   filtrosArray = [];
-
-
-  constructor(private render: Renderer2){
-
-  }
-
-  ngAfterViewInit(): void {
-    console.log( this.optionsSelected);
-
-
-
-  }
-
-
-
-
 
 
   applyFilters(){
@@ -39,7 +23,7 @@ export class FilterComponent implements AfterViewInit{
         filtrosSeleccionados.push(option.nativeElement.value);
       }
     });
-    
+
     console.log(filtrosSeleccionados);
 
     this.filtrosAplicados.emit(filtrosSeleccionados);

@@ -1,7 +1,8 @@
 <section class="w-full flex h-screen gap-2">
-  <machines-card-list></machines-card-list>
+  <machines-card-list (emitCategory)="categoryHeaderName.set($event)"></machines-card-list>
   <div class="w-full flex flex-col overflow-y-auto">
-    <div class="flex w-full h-full">
+    <div class="flex flex-col w-full h-full">
+      <h1 class="mt-2 p-4 text-2xl font-bold">{{categoryHeaderName()}}</h1>
       <router-outlet/>
     </div>
   </div>
