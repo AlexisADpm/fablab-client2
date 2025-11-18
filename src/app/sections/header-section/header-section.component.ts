@@ -18,7 +18,7 @@ export class HeaderSectionComponent {
     },
     {
       name: 'Nosotros',
-      url: '',
+      url: 'nosotros',
     },
     {
       name: 'Proyectos',

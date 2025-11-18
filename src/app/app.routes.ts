@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { NgModule } from '@angular/core';
+import { Nosotros } from './pages/nosotros/nosotros';
 
 export const routes: Routes = [
   {
@@ -18,7 +19,11 @@ export const routes: Routes = [
   },
   {
     path: 'noticias',
-    loadChildren: () => import('./pages/news-page/news.routes')
+    loadChildren: () => import('./pages/news-page/news.routes'),
+  },
+  {
+    path: 'nosotros',
+    component: Nosotros,
   },
   {
     path: '**',

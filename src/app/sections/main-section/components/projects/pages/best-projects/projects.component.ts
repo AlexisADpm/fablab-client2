@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CardComponent } from '../../../../../../shared/components/card/card.component';
@@ -11,7 +11,7 @@ import { ProjectsInterface } from '../../../../../../interfaces/projects.interfa
   imports: [CommonModule, CardComponent, RouterLink],
   templateUrl: './projects.component.html',
 })
-export class ProyectsComponent {
+export class ProyectsComponent implements OnInit{
   proyecto: ProjectsInterface[] = dblocalproyectos;
   ngOnInit() {
     window.scrollTo({ top: 0, behavior: 'auto' });

@@ -1,84 +1,95 @@
-<div class="mt-2 max-w-screen">
-  <div class="border-r border-gray-100 p-4 shadow-lg">
-    <h2 class="text-2xl font-bold">Proyectos</h2>
-    <h2 class="text-xl mt-2">Filtros</h2>
-    <div class="divider my-2"></div>
-    <div class="mt-4 grid grid-cols-1 gap-1">
+<div class="ax-w-screen">
+  <div
+    class="bg-fablab-card-bg text-fablab-text-primary p-6 shadow-lg border border-fablab-border"
+  >
+    <h2 class="text-2xl font-bold text-fablab-text-primary">
+      Filtros de Proyectos
+    </h2>
+    <div class="border-t border-fablab-border my-4"></div>
+
+    <div class="mt-4 grid grid-cols-1 gap-6">
       <div class="flex flex-col">
-        Nombre del proyecto:
+        <label class="font-medium mb-2 text-fablab-text-primary"
+          >Nombre del proyecto:</label
+        >
         <input
           type="text"
           id="name"
-          class="mt-2 block w-full rounded-md border border-gray-200 px-2 py-2 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+          class="block w-full rounded-md border border-fablab-border px-4 py-2 shadow-sm focus:border-fablab-primary focus:ring focus:ring-fablab-primary/50 text-fablab-text-primary bg-fablab-bg transition"
         />
       </div>
 
-      <!-- ------------------------------------------------------------------------------------------------------------------------------------- -->
-      <div class="divider m-0"></div>
+      <div class="border-t border-fablab-border"></div>
 
       <div class="flex flex-col">
-        <label class="font-medium mb-1">Tipo de proyecto</label>
-        <div class="flex flex-col gap-2 mt-2" >
+        <label class="font-medium mb-2 text-fablab-text-primary"
+          >Tipo de proyecto</label
+        >
+        <div class="grid grid-cols-1 gap-y-3">
           <label class="inline-flex items-center">
             <input
               type="checkbox"
-              class="form-checkbox text-blue-600"
+              class="form-checkbox text-fablab-primary size-5 rounded"
               value="Impresion 3D"
               #options
             />
-            <span class="ml-2">Impresion 3D</span>
+            <span class="ml-2 text-fablab-text-secondary">Impresion 3D</span>
           </label>
           <label class="inline-flex items-center">
             <input
               type="checkbox"
-              class="form-checkbox text-blue-600"
+              class="form-checkbox text-fablab-primary size-5 rounded"
               value="Corte laser"
               #options
             />
-            <span class="ml-2">Corte laser</span>
+            <span class="ml-2 text-fablab-text-secondary">Corte laser</span>
           </label>
           <label class="inline-flex items-center">
             <input
               type="checkbox"
-              class="form-checkbox text-blue-600"
+              class="form-checkbox text-fablab-primary size-5 rounded"
               value="Electronica"
               #options
             />
-            <span class="ml-2">Electronica</span>
+            <span class="ml-2 text-fablab-text-secondary">Electronica</span>
           </label>
           <label class="inline-flex items-center">
             <input
               type="checkbox"
-              class="form-checkbox text-blue-600"
+              class="form-checkbox text-fablab-primary size-5 rounded"
               value="Otro"
             />
-            <span class="ml-2">Mixto</span>
+            <span class="ml-2 text-fablab-text-secondary">Mixto</span>
           </label>
           <label class="inline-flex items-center">
             <input
               type="checkbox"
-              class="form-checkbox text-blue-600"
+              class="form-checkbox text-fablab-primary size-5 rounded"
               value="Otro"
               #options
             />
-            <span class="ml-2">Otro</span>
+            <span class="ml-2 text-fablab-text-secondary">Otro</span>
           </label>
         </div>
       </div>
 
-      <button class="btn w-full" (click)="applyFilters()">Aplicar filtros</button>
+      <button
+        (click)="applyFilters()"
+        class="w-full bg-fablab-primary text-black font-semibold py-3 rounded-md shadow-md hover:bg-fablab-primary/80 transition"
+      >
+        Aplicar filtros
+      </button>
 
-
-
-      <!-- ------------------------------------------------------------------------------------------------------------------------------------- -->
-      <div class="divider m-0"></div>
+      <div class="border-t border-fablab-border"></div>
 
       <div class="flex flex-col">
-        Fecha de creación:
+        <label class="font-medium mb-2 text-fablab-text-primary"
+          >Fecha de creación:</label
+        >
         <input
           type="date"
           id="date"
-          class="mt-2 block w-full rounded-md border border-gray-200 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+          class="block w-full rounded-md border border-fablab-border px-4 py-2 shadow-sm outline-none focus:border-fablab-primary focus:ring focus:ring-fablab-primary/50 text-fablab-text-primary bg-fablab-bg transition"
         />
       </div>
     </div>
