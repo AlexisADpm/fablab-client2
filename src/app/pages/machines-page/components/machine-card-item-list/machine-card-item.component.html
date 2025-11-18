@@ -1,21 +1,32 @@
 <div class="p-1 flex flex-wrap w-full gap-4 lg:p-4">
   @for (item of machines | categoryFilter: category(); track $index){
-    <div class="flex flex-col w-full mx-auto rounded-xl lg:min-w-[245px] lg:m-0 lg:max-w-[390px] bg-base-100 shadow-xl">
-        <div class="min-w-[200px]">
-            <img src="{{item.imageUrl}}" alt="no hay imagen" class="w-full h-full bg-amber-400 rounded-t-xl">
-          </div>
-          <div class="p-2 w-full">
-              <h1 class="text-[1.7rem] font-bold">{{item.name}}</h1>
-              <p class="text-[0.7rem] font-bold">{{item.category}}</p>
-              <p class="text-[0.9rem] mt-1">{{item.description}}</p>
-          </div>
-          <div class="flex flex-col mb-2 justify-end gap-2 mr-2 h-full items-end sm:flex-row">
-            @if (widthWindow() >= 1024 && item.isAnimated) {
-              <button class="btn" [routerLink]="`/maquinas/models/${item.id}`">Tour interactivo 3D</button>
-            }
-            <button class="btn" [routerLink]="`/maquinas/item/${item.id}`">Ver máquina</button>
-          </div>
+  <div
+    class="bg-fablab-card-bg flex flex-col w-full mx-auto rounded-xl lg:min-w-[245px] lg:m-0 lg:max-w-[390px] shadow-xl"
+  >
+    <div class="min-w-[200px]">
+      <img
+        src="{{ item.imageUrl }}"
+        alt="no hay imagen"
+        class="w-full h-full bg-fablab-accent rounded-t-xl"
+      />
     </div>
+    <div class="p-2 w-full">
+      <h1 class="text-[1.7rem] font-bold">{{ item.name }}</h1>
+      <p class="text-[0.7rem] font-bold">{{ item.category }}</p>
+      <p class="text-[0.9rem] mt-1">{{ item.description }}</p>
+    </div>
+    <div
+      class="flex flex-col mb-2 justify-end gap-2 mr-2 h-full items-end sm:flex-row"
+    >
+      @if (widthWindow() >= 1024 && item.isAnimated) {
+      <button class="btn" [routerLink]="`/maquinas/models/${item.id}`">
+        Tour interactivo 3D
+      </button>
+      }
+      <button class="btn" [routerLink]="`/maquinas/item/${item.id}`">
+        Ver máquina
+      </button>
+    </div>
+  </div>
   }
 </div>
-

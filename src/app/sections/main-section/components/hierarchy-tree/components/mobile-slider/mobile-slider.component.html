@@ -1,54 +1,31 @@
-<div class="swiper max-w-[600px] mx-auto">
+<div class="swiper mx-auto">
   <swiper-container
-    slides-per-view="2"
+    slides-per-view="3"
     speed="500"
     loop="true"
     pagination-dynamic-bullets="true"
+    space-between="20"
     class="p-6"
+    style="--swiper-pagination-bottom: -15px; padding-bottom: 25px"
   >
+    @for (member of teamMembers; track member.name) {
     <swiper-slide>
-      <div class="w-full aspect-auto bg-amber-300">
+      <div class="w-full aspect-square overflow-hidden rounded-xl">
         <img
-          src="../../../../../../../assets/imgs/headshots/pexels-alexwolfmx-14541208 (1).jpg"
-          alt=""
-          class="h-full w-full"
+          [src]="member.img"
+          [alt]="'Foto de ' + member.name"
+          class="w-full h-full object-cover"
         />
       </div>
-      <p class="text-white text-center text-2xl">Nombre</p>
-      <p class="text-white text-center text-xs">Descripcion del cargo</p>
+
+      <p class="text-fablab-text-primary text-center text-2xl">
+        {{ member.name }}
+      </p>
+
+      <p class="text-fablab-text-primary text-center text-xs">
+        {{ member.role }}
+      </p>
     </swiper-slide>
-    <swiper-slide>
-      <div class="w-full aspect-auto bg-green-300">
-        <img
-          src="../../../../../../../assets/imgs/headshots/pexels-trace-2834009.jpg"
-          alt=""
-          class="h-full w-full"
-        />
-      </div>
-      <p class="text-white text-center text-2xl">Nombre</p>
-      <p class="text-white text-center text-xs">Descripcion del cargo</p>
-    </swiper-slide>
-    <swiper-slide>
-      <div class="w-full aspect-auto bg-blue-300">
-        <img
-          src="../../../../../../../assets/imgs/headshots/pexels-linkedin-2182970.jpg"
-          alt=""
-          class="h-full w-full"
-        />
-      </div>
-      <p class="text-white text-center text-2xl">Nombre</p>
-      <p class="text-white text-center text-xs">Descripcion del cargo</p>
-    </swiper-slide>
-    <swiper-slide>
-      <div class="w-full aspect-auto bg-black">
-        <img
-          src="../../../../../../../assets/imgs/headshots/pexels-trace-2834009.jpg"
-          alt=""
-          class="h-full w-full"
-        />
-      </div>
-      <p class="text-white text-center text-2xl">Nombre</p>
-      <p class="text-white text-center text-xs">Descripcion del cargo</p>
-    </swiper-slide>
+    }
   </swiper-container>
 </div>
