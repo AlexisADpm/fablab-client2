@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { NewsService } from '../../../services/news.service';
 import { News } from '../../../interfaces/news.interface';
 import { ActivatedRoute } from '@angular/router';
@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   imports: [],
   templateUrl: './individual-new-page.component.html',
 })
-export default class IndividualNewPageComponent {
+export default class IndividualNewPageComponent implements OnInit{
   //Se inyecta servicio de noticias
   NewsService = inject(NewsService);
   route = inject(ActivatedRoute);
