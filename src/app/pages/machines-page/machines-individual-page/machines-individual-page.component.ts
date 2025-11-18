@@ -8,7 +8,6 @@ import { Object3d } from '../../../interfaces/objects3d.interface';
   selector: 'app-machines-individual-page',
   imports: [RouterLink],
   templateUrl: './machines-individual-page.component.html',
-  styleUrl: './machines-individual-page.component.css'
 })
 export class MachinesIndividualPageComponent implements OnInit {
 
