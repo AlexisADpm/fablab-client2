@@ -6,7 +6,6 @@ import {Object3d} from '../../../interfaces/objects3d.interface'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import machinesdata from '../../../data/machines-data/machines-data.json';
 
-
 @Component({
   selector: 'app-models-component',
   imports: [],
@@ -14,56 +13,32 @@ import machinesdata from '../../../data/machines-data/machines-data.json';
 })
 export default class ModelsComponentComponent implements OnInit,AfterViewInit{
 
-  //Inyecciones e inserciones
   constructor(private renderer2: Renderer2){
   }
 
-
-  //REFERENCIAS DEL DOM
-  //tag primer elemento animado
   @ViewChild('firstElement',{static: true}) firstElement!: ElementRef;
-  //Tag de los cuadros
   @ViewChild('informativeElements',{static: true}) textContainer!: ElementRef;
-  //Obtenemos tag de canvas
   @ViewChild('modelthree') canvasContainer!: ElementRef;
 
-  //id de modelo
   idModel:number = 0;
-
-  //Objeto de prueba y me falta un campo
   modelo3dTest: Object3d | null | undefined = null;
-
-  //Tomar elemento de tarjetas dom para referencia de animacion
   actualElementAnimate: HTMLElement | null = null;
-
-  //Tomar posicion actual
   actualObjPosition = signal<number>(0);
-
-  //Se esta animando
   animateState: boolean = false;
-  //Obtenemos parametros de la ruta
   activeRoute = inject(ActivatedRoute);
 
 
-
-  //Parametros three js
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private renderer!: THREE.WebGLRenderer;
   private model!: THREE.Mesh;
-  //Controles de orbita
   private controls!: OrbitControls;
 
-  //test para detectar posiciones del objeto
   raycaster = new THREE.Raycaster();
   mouse = new THREE.Vector2();
 
-
-  //LifeCyclehooks
   ngOnInit(){
-    //Tomamos paramtros de ruta
     this.idModel = parseInt(this.activeRoute.snapshot.paramMap.get('idModel')!);
-    //saber si el modelo existe en caso de que no, se evalua en ngafterview
     this.modelo3dTest = machinesdata.find((model)=>model.id === this.idModel)
   }
 
