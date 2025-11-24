@@ -4,6 +4,7 @@ import { catchError, finalize, map, Observable, of } from 'rxjs';
 import { ProjectsResponseInterface } from '../utils/responseInterfaces/projectsResponse';
 import { projectsMapperApiToProjectsArray } from '../utils/mappers/projectsMapper';
 import { ProjectsInterface } from '../interfaces/projects.interface';
+import { rxResource } from '@angular/core/rxjs-interop';
 
 @Injectable({providedIn: 'root'
 })
@@ -15,40 +16,24 @@ export class ProjectsService {
   //Atributos
   projectsLoading = signal<boolean>(false);
 
-
-
-  constructor(){
-    this.getProjects().subscribe();
-  }
-
-
+  projectsResource = rxResource({
+    loader: () => {
+      return this.getProjects();
+    }
+  });
 
   getProjects(): Observable<ProjectsInterface[] | null>{
 
-    if(this.projectsLoading()){
-      return of(null);
-    }
+    return this.httpclient.get<ProjectsResponseInterface[]>("https://fablabwebapi20251104221404-crbeb0b9cafvhqg3.canadacentral-01.azurewebsites.net/api/proyectos").pipe(
+      map((resp)=>{
+        console.log(resp);
+        return projectsMapperApiToProjectsArray(resp);
+      }),
+      catchError((err)=>{
+        console.log(err);
+        return of(null);
 
-    this.projectsLoading.set(true);
-
-    return this.httpclient.get<ProjectsResponseInterface[]>("http://localhost:5263/api/proyectos").pipe(
-          map((resp)=>{
-            console.log(resp);
-            return projectsMapperApiToProjectsArray(resp);
-          }),
-          catchError((err)=>{
-            console.log(err);
-            return of(null);
-
-          }),
-          finalize(()=>{
-            this.projectsLoading.set(false);
-          })
-        );
-
-
+      })
+    );
   }
-
-
-
 }

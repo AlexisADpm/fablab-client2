@@ -15,7 +15,6 @@ export class NewsPageComponent {
 
 
   newsDataGetter = computed<News[] | null | undefined>(()=>{
-    console.log(this.newsService.newsResource.value());
     if(!this.newsService.newsResource.value()){
       return [];
     }

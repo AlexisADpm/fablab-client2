@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { CardComponent } from '../../shared/components/card/card.component';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -28,7 +28,20 @@ export class AllProjectsComponent {
   //Servicios
   projectsService = inject(ProjectsService);
 
-  proyecto: ProjectsInterface[] = [];
+  //Atributos
+  projectsData = computed<ProjectsInterface[] | null | undefined>(()=>{
+    if(!this.projectsService.projectsResource.value()){
+      console.log(this.projectsService.projectsResource.value());
+      return [];
+    }
+
+    return this.projectsService.projectsResource.value();
+
+  })
+
+
+
+
 
   filtrosRecibidos = signal<string[]>([]);
 

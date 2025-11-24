@@ -24,7 +24,6 @@ export class NewsService{
   //Recurso reactivo
   newsResource = rxResource({
     loader: () => {
-      console.log("Dada");
       return this.getNews();
     }
   });
@@ -33,10 +32,7 @@ export class NewsService{
 
   //Metodos
   getNews(): Observable<News[] | null>{
-    if(this.newsLoading()){
-      return of(null);
-    }
-    this.newsLoading.set(true);
+
 
     return this.httpclient.get<NewsResponseInterface[]>("https://fablabwebapi20251104221404-crbeb0b9cafvhqg3.canadacentral-01.azurewebsites.net/api/noticias").pipe(
       map((resp)=>{
@@ -47,9 +43,6 @@ export class NewsService{
         console.log(err);
         return of(null);
 
-      }),
-      finalize(()=>{
-        this.newsLoading.set(false);
       })
     );
   }
