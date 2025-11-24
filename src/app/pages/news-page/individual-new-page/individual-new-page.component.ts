@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { NewsService } from '../../../services/news.service';
 import { News } from '../../../interfaces/news.interface';
 import { ActivatedRoute } from '@angular/router';
@@ -9,19 +9,23 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './individual-new-page.component.html',
 })
 export default class IndividualNewPageComponent implements OnInit{
-  //Se inyecta servicio de noticias
-  NewsService = inject(NewsService);
+  //Servicios
+  newsService = inject(NewsService);
   route = inject(ActivatedRoute);
 
-  singleNewsData = signal<News | undefined >(undefined);
+  //Atributos
+  idRoute = signal<number | null>(null);
+  newsDataGetter = computed<News | null >(()=>{
+    if(!this.newsService.newsResource.value() && !this.idRoute()){
+      return null;
+    }
+    return this.newsService.getNewById(this.newsService.newsResource.value()!,this.idRoute()!);
+  })
 
 
-
+  //Lyfecyclehooks
   ngOnInit(): void {
-    const idRoute:number = parseInt(this.route.snapshot.paramMap.get("id")!);
-    this.singleNewsData.set(
-      this.NewsService.newsResponse()
-      .find((obj)=> obj.id === idRoute))
+    this.idRoute.set(parseInt(this.route.snapshot.paramMap.get("id")!));
   }
 
 

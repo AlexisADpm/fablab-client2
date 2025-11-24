@@ -3,11 +3,11 @@ export interface ProjectsInterface {
   participantes: Participantes[];
   title: string;
   description: string;
-  date: string;
+  date: Date;
   imgUrl: string;
 }
 
-interface Participantes {
+export interface Participantes {
   nombre: string;
   carrera: string;
   rut: string;

@@ -1,15 +1,26 @@
-<div class="text-black bg-fablab-bg p-5 w-[85%] mx-auto mt-5">
-  <p class="mb-2">{{ singleNewsData()?.epigrafe }}</p>
-  <p>{{ singleNewsData()?.fechapublicacion }}</p>
-  <h1 class="font-bold text-4xl text-justify mx-auto">
-    {{ singleNewsData()?.titulo }}
-  </h1>
-  <div class="mt-5 flex">
-    <div class="p-5 bg-fablab-card-bg w-fit rounded-4xl">img</div>
-    <div class="my-auto ml-5">
-      <p>Autor: {{ singleNewsData()?.autor }}</p>
-      <p class="font-bold">Miembro de laboratorio FabLab</p>
+@if(newsService.newsResource.isLoading()){
+  <h1>Cargando</h1>
+}
+
+
+
+@if(newsService.newsResource.hasValue()){
+  <div class="text-black bg-fablab-bg p-5 w-[85%] mx-auto mt-5">
+    <p class="mb-2">{{ newsDataGetter()?.epigrafe }}</p>
+    <p>{{ newsDataGetter()?.fechapublicacion }}</p>
+    <h1 class="font-bold text-4xl text-justify mx-auto">
+      {{ newsDataGetter()?.titulo }}
+    </h1>
+    <div class="mt-5 flex">
+      <div class="p-5 bg-fablab-card-bg w-fit rounded-4xl">img</div>
+      <div class="my-auto ml-5">
+        <p>Autor: {{ newsDataGetter()?.autor }}</p>
+        <p class="font-bold">Miembro de laboratorio FabLab</p>
+      </div>
     </div>
+    <p class="mt-5">{{ newsDataGetter()?.contenido }}</p>
   </div>
-  <p class="mt-5">{{ singleNewsData()?.contenido }}</p>
-</div>
+}
+
+
+

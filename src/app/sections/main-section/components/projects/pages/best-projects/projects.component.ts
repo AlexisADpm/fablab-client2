@@ -12,7 +12,7 @@ import { ProjectsInterface } from '../../../../../../interfaces/projects.interfa
   templateUrl: './projects.component.html',
 })
 export class ProyectsComponent implements OnInit{
-  proyecto: ProjectsInterface[] = dblocalproyectos;
+  proyecto: ProjectsInterface[] = [];
   ngOnInit() {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }

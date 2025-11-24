@@ -11,7 +11,7 @@ import { ProjectsInterface } from '../../../../../../interfaces/projects.interfa
   standalone: true,
 })
 export class IndividualProjectComponent implements OnInit {
-  proyecto: ProjectsInterface[] = dblocalproyectos;
+  proyecto: ProjectsInterface[] = [];
 
   proyectoEncontrado?: ProjectsInterface;
 

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CardComponent } from '../../shared/components/card/card.component';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -8,6 +8,7 @@ import { FilterComponent } from '../../sections/main-section/components/projects
 import { OrderByComponent } from '../../sections/main-section/components/projects/components/order-by/order-by.component';
 import { ProjectsFilterPipe } from '../../pipes/projectsFilter.pipe';
 import { filterProjectsPipe } from '../../pipes/filterProyects.pipe';
+import { ProjectsService } from '../../services/projects.service';
 
 @Component({
   selector: 'all-projects',
@@ -23,7 +24,11 @@ import { filterProjectsPipe } from '../../pipes/filterProyects.pipe';
   templateUrl: './all-projects.component.html',
 })
 export class AllProjectsComponent {
-  proyecto: ProjectsInterface[] = dblocalproyectos;
+
+  //Servicios
+  projectsService = inject(ProjectsService);
+
+  proyecto: ProjectsInterface[] = [];
 
   filtrosRecibidos = signal<string[]>([]);
 
