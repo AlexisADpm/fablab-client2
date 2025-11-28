@@ -15,6 +15,13 @@
     >
       {{ title() }}
     </h2>
+    <p class="">
+      @if(!date()){
+        No se registran fechas
+      }@else{
+        {{date()}}
+      }
+    </p>
     <p
       class="text-sm sm:text-base md:text-base lg:text-base xl:text-lg text-fablab-text-secondary"
     >

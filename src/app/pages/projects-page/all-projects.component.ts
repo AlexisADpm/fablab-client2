@@ -1,7 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CardComponent } from '../../shared/components/card/card.component';
 import { RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import dblocalproyectos from '../../utils/dblocalproyectos.json';
 import { ProjectsInterface } from '../../interfaces/projects.interface';
 import { FilterComponent } from '../../sections/main-section/components/projects/components/filter/filter.component';
@@ -20,6 +20,7 @@ import { ProjectsService } from '../../services/projects.service';
     FilterComponent,
     OrderByComponent,
     filterProjectsPipe,
+    DatePipe
   ],
   templateUrl: './all-projects.component.html',
 })
@@ -38,10 +39,6 @@ export class AllProjectsComponent {
     return this.projectsService.projectsResource.value();
 
   })
-
-
-
-
 
   filtrosRecibidos = signal<string[]>([]);
 

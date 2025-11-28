@@ -3,6 +3,7 @@ export interface ProjectsInterface {
   participantes: Participantes[];
   title: string;
   description: string;
+  categoria: string;
   date: Date;
   imgUrl: string;
 }

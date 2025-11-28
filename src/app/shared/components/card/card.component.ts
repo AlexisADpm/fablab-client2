@@ -8,6 +8,7 @@ import { Component, input, Input } from '@angular/core';
 export class CardComponent {
   cardID = input<string>('');
   title = input<string>('');
+  date = input<string | null>('');
   description = input<string>('');
   imgUrl = input<string>('');
 }

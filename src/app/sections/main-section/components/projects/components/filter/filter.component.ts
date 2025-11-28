@@ -24,8 +24,6 @@ export class FilterComponent{
       }
     });
 
-    console.log(filtrosSeleccionados);
-
     this.filtrosAplicados.emit(filtrosSeleccionados);
   }
 

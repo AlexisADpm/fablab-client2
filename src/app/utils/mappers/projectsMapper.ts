@@ -9,6 +9,7 @@ export function projectsMapperApiToProjects(projectResp: ProjectsResponseInterfa
     projectId: projectResp.id,
     title: projectResp.titulo,
     description: projectResp.descripcionProyecto,
+    categoria: projectResp.categoria,
     date: projectResp.fechaInicio,
     imgUrl: projectResp.imgUrl,
     participantes: usersMapperApiToUsersArray(projectResp.usuarios)

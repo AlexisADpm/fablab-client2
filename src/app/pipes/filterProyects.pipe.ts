@@ -10,6 +10,9 @@ export class filterProjectsPipe implements PipeTransform {
     if(filtros.length === 0){
       return proyectos;
     }
-    return proyectos.filter((proyecto) => filtros.includes(proyecto.title));
+
+    console.log(filtros);
+
+    return proyectos.filter((proyecto) => filtros.includes(proyecto.categoria));
   }
 }
