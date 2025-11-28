@@ -11,5 +11,6 @@ export class CardComponent {
   date = input<string | null>('');
   description = input<string>('');
   imgUrl = input<string>('');
+  category = input<string>('');
 }
 //Ponemos los inputs, todos como string, de momento, y le asignamos un valor vasio para iniciarlo asi por defecto
