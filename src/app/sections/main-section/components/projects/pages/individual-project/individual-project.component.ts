@@ -1,33 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
+import { ProjectsService } from '../../../../../../services/projects.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import dblocalproyectos from '../../../../../../utils/dblocalproyectos.json';
-import { CommonModule } from '@angular/common';
 import { ProjectsInterface } from '../../../../../../interfaces/projects.interface';
 
 @Component({
-  selector: 'individual-project',
+  selector: 'app-individual-project-page',
+  imports: [RouterLink],
   templateUrl: './individual-project.component.html',
-  imports: [RouterLink, CommonModule],
-  standalone: true,
 })
-export class IndividualProjectComponent implements OnInit {
-  proyecto: ProjectsInterface[] = [];
+export class IndividualProjectPageComponent {
+  //Servicios
+  projectsService = inject(ProjectsService);
+  route = inject(ActivatedRoute);
 
-  proyectoEncontrado?: ProjectsInterface;
+  //Atributos
+  idRoute = signal<number | null>(null);
+  projectDataGetter = computed<ProjectsInterface | null >(()=>{
+    if(!this.projectsService.projectsResource.value() && !this.idRoute()){
+      return null;
+    }
+    return this.projectsService.getProjectById(this.projectsService.projectsResource.value()!,this.idRoute()!);
+  })
 
-  ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    console.log(this.proyecto);
-    this.searchById(id);
-    console.log(this.proyectoEncontrado);
+
+  //Lyfecyclehooks
+  ngOnInit(): void {
+    this.idRoute.set(parseInt(this.route.snapshot.paramMap.get("id")!));
   }
 
-  constructor(private route: ActivatedRoute) {}
 
-  searchById(id: number): void {
-    const objectFind = this.proyecto.find(
-      (proyecto) => proyecto.projectId === id
-    );
-    this.proyectoEncontrado = objectFind;
-  }
+
 }

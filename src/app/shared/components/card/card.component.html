@@ -1,9 +1,9 @@
 <div
-  class="card shadow-lg flex flex-col w-full h-[22rem] sm:h-[22rem] md:h-[24rem] lg:h-[22rem] xl:h-[24rem] max-w-full transition-transform duration-300 hover:scale-105 cursor-pointer bg-fablab-bg border border-fablab-border"
+  class="card shadow-lg flex flex-col w-full h-[30rem] max-w-full transition-transform duration-300 hover:scale-105 cursor-pointer bg-fablab-bg border border-fablab-border"
 >
-  <figure class="w-full h-[55%] overflow-hidden">
+  <figure class="w-full h-[45%]">
     <img
-      class="w-full h-full object-cover"
+      class="w-full h-[250px] object-cover"
       [src]="imgUrl()"
       [alt]="'Imagen de ' + title()"
     />
@@ -21,4 +21,7 @@
       {{ description() }}
     </p>
   </div>
+  <button class="w-full flex justify-end p-2">
+    <p class="btn text-end w-fit">Ver proyecto</p>
+  </button>
 </div>

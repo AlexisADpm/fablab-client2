@@ -2,22 +2,22 @@
   <div class="flex flex-col pt-5 lg:flex-row gap-x-10">
     <figure>
       <img
-        [src]="proyectoEncontrado?.imgUrl"
+        [src]="projectDataGetter()?.imgUrl"
         alt="Imagen del proyecto"
         class="rounded-lg mb-4"
       />
     </figure>
     <div>
       <h1 class="text-3xl font-bold mb-4 text-fablab-text-primary">
-        {{ proyectoEncontrado?.title }}
+        {{ projectDataGetter()?.title }}
       </h1>
 
       <p class="text-fablab-text-secondary mb-4">
-        {{ proyectoEncontrado?.description }}
+        {{ projectDataGetter()?.description }}
       </p>
 
       <ul class="text-fablab-text-secondary mb-6 space-y-1">
-        <li><strong>📅 Fecha:</strong> {{ proyectoEncontrado?.date }}</li>
+        <li><strong>📅 Fecha:</strong> {{ projectDataGetter()?.date }}</li>
       </ul>
     </div>
   </div>
@@ -29,25 +29,27 @@
   </div>
 
   <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    <li
-      *ngFor="let participante of proyectoEncontrado?.participantes"
-      class="flex md:flex-row bg-fablab-card-bg shadow-lg rounded-xl mt-5 border border-fablab-border text-fablab-text-secondary"
-    >
-      <figure class="w-1/3 flex-shrink-0">
-        <img
-          [src]="participante.foto"
-          alt="Foto de {{ participante.nombre }}"
-          class="w-full h-full object-cover rounded-l-xl"
-        />
-      </figure>
-      <div class="flex flex-col p-[5%] gap-[3px] text-fablab-text-secondary">
-        <p class="text-fablab-text-primary">
-          <strong>Nombre: </strong>{{ participante.nombre }}
-        </p>
-        <p><strong>Carrera: </strong>{{ participante.carrera }}</p>
-        <p class="text-nowrap"><strong>RUT: </strong>{{ participante.rut }}</p>
-      </div>
-    </li>
+    @for(participante of projectDataGetter()?.participantes; track $index ){
+
+      <li
+        class="flex md:flex-row bg-fablab-card-bg shadow-lg rounded-xl mt-5 border border-fablab-border text-fablab-text-secondary"
+      >
+        <figure class="w-1/3 flex-shrink-0">
+          <img
+            [src]="participante.foto"
+            alt="Foto de {{ participante.nombre }}"
+            class="w-full h-full object-cover rounded-l-xl"
+          />
+        </figure>
+        <div class="flex flex-col p-[5%] gap-[3px] text-fablab-text-secondary">
+          <p class="text-fablab-text-primary">
+            <strong>Nombre: </strong>{{ participante.nombre }}
+          </p>
+          <p><strong>Carrera: </strong>{{ participante.carrera }}</p>
+          <p class="text-nowrap"><strong>RUT: </strong>{{ participante.rut }}</p>
+        </div>
+      </li>
+    }
   </ul>
 
   <div class="flex justify-end p-5">

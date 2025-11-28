@@ -36,4 +36,14 @@ export class ProjectsService {
       })
     );
   }
+
+  getProjectById(projectsArray: ProjectsInterface[], id: number): ProjectsInterface | null{
+    if(!projectsArray){
+      return null;
+    }
+
+    return projectsArray.find((pro) => pro.projectId == id)!;
+  }
+
+
 }

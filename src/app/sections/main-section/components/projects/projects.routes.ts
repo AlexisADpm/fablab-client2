@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { IndividualProjectComponent } from './pages/individual-project/individual-project.component';
 import { AllProjectsComponent } from '../../../../pages/projects-page/all-projects.component';
+import { IndividualProjectPageComponent } from './pages/individual-project/individual-project.component';
 
 export const routes: Routes = [
   {
@@ -9,7 +9,7 @@ export const routes: Routes = [
   },
   {
     path: ':id',
-    component: IndividualProjectComponent,
+    component: IndividualProjectPageComponent,
   },
   {
     path: '**',
